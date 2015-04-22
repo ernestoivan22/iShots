@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SaberEsPoder</string>
+
+    <string name="search_hint">Buscar shots!</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="user_icon">Opciones de usuario</string>
+    <string name="title_activity_busqueda">Busqueda</string>
+    <string name="title_activity_menu_usuario">MenuUsuario</string>>
+</resources>
