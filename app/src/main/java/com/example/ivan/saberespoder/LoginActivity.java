@@ -25,6 +25,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -98,6 +100,30 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this,olvide_contrasena.class));
+            }
+        });
+
+        ImageButton btnProfile = (ImageButton) findViewById(R.id.imageButton11);
+        btnProfile.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,LoginActivity.class));
+            }
+        });
+
+        ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton12);
+        btnSettings.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,Settings.class));
+            }
+        });
+
+        ImageView btnLogo = (ImageView) findViewById(R.id.imageView5);
+        btnSettings.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,PantallaPrincipal.class));
             }
         });
 

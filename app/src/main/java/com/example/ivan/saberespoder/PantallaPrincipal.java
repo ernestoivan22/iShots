@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 
 public class PantallaPrincipal extends ActionBarActivity{
@@ -22,6 +23,30 @@ public class PantallaPrincipal extends ActionBarActivity{
             public void onClick(View view) {
                 //attemptLogin();
                 startActivity(new Intent(PantallaPrincipal.this,LoginActivity.class));
+            }
+        });
+
+        ImageButton btnProfile = (ImageButton) findViewById(R.id.profileButton);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PantallaPrincipal.this,LoginActivity.class));
+            }
+        });
+
+        ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton);
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PantallaPrincipal.this,Settings.class));
+            }
+        });
+
+        ImageView btnLogo = (ImageView) findViewById(R.id.imageView);
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PantallaPrincipal.this,PantallaPrincipal.class));
             }
         });
 

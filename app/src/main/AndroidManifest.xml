@@ -60,6 +60,10 @@
             android:name=".olvide_contrasena"
             android:label="@string/title_activity_olvide_contrasena" >
         </activity>
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>

@@ -10,4 +10,5 @@
     <string name="title_activity_menu_usuario">Menu principal</string>
     <string name="title_activity_mostrar_shot">Mostrar shot</string>
     <string name="title_activity_olvide_contrasena">Olvide mi contraseña</string>
+    <string name="title_activity_settings">Settings</string>
 </resources>
