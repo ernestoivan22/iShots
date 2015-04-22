@@ -2,6 +2,7 @@ package com.example.ivan.saberespoder;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -28,6 +29,8 @@ public class Registro extends ActionBarActivity {
         editText = (EditText)this.findViewById(R.id.editText);
         editText2 = (EditText)this.findViewById(R.id.editText2);
         editText3 = (EditText)this.findViewById(R.id.editText3);
+
+        startActivity(new Intent(Registro.this,PantallaPrincipal.class));
     }
 
 
