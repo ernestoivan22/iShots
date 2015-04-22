@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,7 +31,13 @@ public class Registro extends ActionBarActivity {
         editText2 = (EditText)this.findViewById(R.id.editText2);
         editText3 = (EditText)this.findViewById(R.id.editText3);
 
-        startActivity(new Intent(Registro.this,PantallaPrincipal.class));
+        Button btnAceptar = (Button) findViewById(R.id.button3);
+        btnAceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Registro.this, PantallaPrincipal.class));
+            }
+        });
     }
 
 

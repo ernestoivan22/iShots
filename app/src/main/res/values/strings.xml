@@ -6,8 +6,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="user_icon">Opciones de usuario</string>
-    <string name="title_activity_busqueda">Busqueda</string>
-    <string name="title_activity_menu_usuario">MenuUsuario</string>
-    <string name="title_activity_mostrar_shot">MostrarShot</string>
-    <string name="title_activity_olvide_contrasena">olvide_contrasena</string>
+    <string name="title_activity_busqueda">Búsqueda</string>
+    <string name="title_activity_menu_usuario">Menu principal</string>
+    <string name="title_activity_mostrar_shot">Mostrar shot</string>
+    <string name="title_activity_olvide_contrasena">Olvide mi contraseña</string>
 </resources>
