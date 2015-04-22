@@ -1,9 +1,13 @@
 package com.example.ivan.saberespoder;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 
 public class PantallaPrincipal extends ActionBarActivity{
@@ -12,6 +16,17 @@ public class PantallaPrincipal extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_principal);
         getSupportActionBar().hide();
+        ImageButton toProfile = (ImageButton) findViewById(R.id.profileButton);
+        toProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //attemptLogin();
+                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(i);
+                setContentView(R.layout.activity_login);
+            }
+        });
+
     }
 
 
