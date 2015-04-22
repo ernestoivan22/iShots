@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SaberEsPoder</string>
+    <string name="app_name">iShots</string>
 
     <string name="search_hint">Buscar shots!</string>
 
@@ -9,4 +9,5 @@
     <string name="title_activity_busqueda">Busqueda</string>
     <string name="title_activity_menu_usuario">MenuUsuario</string>
     <string name="title_activity_mostrar_shot">MostrarShot</string>
+    <string name="title_activity_olvide_contrasena">olvide_contrasena</string>
 </resources>

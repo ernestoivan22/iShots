@@ -80,9 +80,24 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             @Override
             public void onClick(View view) {
                 //attemptLogin();
-                Intent i = new Intent(getApplicationContext(),PantallaPrincipal.class);
-                startActivity(i);
-                setContentView(R.layout.activity_pantalla_principal);
+                startActivity(new Intent(LoginActivity.this,PantallaPrincipal.class));
+
+            }
+        });
+
+        Button bRegistrar = (Button) findViewById(R.id.button);
+        bRegistrar.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,Registro.class));
+            }
+        });
+
+        Button bOlvideContrasena = (Button) findViewById(R.id.button2);
+        bOlvideContrasena.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,olvide_contrasena.class));
             }
         });
 
