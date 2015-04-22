@@ -1,10 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
-    android:layout_height="wrap_content" android:paddingLeft="0dp"
+    android:layout_height="fill_parent" android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:orientation="vertical"
-    android:paddingBottom="0dp" tools:context=".PantallaPrincipal">
+    android:paddingBottom="0dp" tools:context=".MostrarShot">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -19,18 +19,18 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:background="#DDDDDD">
+        android:background="#DDDDDD" >
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1">
+            android:layout_weight="1" >
 
             <ImageButton
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/profileButton"
+                android:id="@+id/imageButton6"
                 android:clickable="true"
                 android:contentDescription="@string/user_icon"
                 android:src="@drawable/user"
@@ -41,51 +41,72 @@
             <ImageView
                 android:layout_width="155dp"
                 android:layout_height="61dp"
-                android:id="@+id/imageView"
+                android:id="@+id/imageView4"
                 android:src="@drawable/logopeq"
                 android:background="#00000000" />
 
             <ImageButton
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton"
+                android:id="@+id/imageButton7"
                 android:src="@drawable/settings"
                 android:background="#00000000"
                 android:layout_weight="1"
                 android:layout_gravity="center" />
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
-
-        <SearchView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchView"
-            android:queryHint="Buscar Shot"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp" />
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Shots Recientes:"
-            android:id="@+id/textView3" />
+            android:text="Titulo"
+            android:id="@+id/textView4" />
 
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:id="@+id/listView"
-            android:paddingBottom="20dp"
-            android:paddingTop="20dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/editText4"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="5"
+                android:textAlignment="center">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton8" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton9" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton10" />
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>
