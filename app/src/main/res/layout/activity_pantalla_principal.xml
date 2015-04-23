@@ -4,7 +4,8 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:orientation="vertical"
-    android:paddingBottom="0dp" tools:context=".PantallaPrincipal">
+    android:paddingBottom="0dp" tools:context=".PantallaPrincipal"
+    android:background="#ff5e9be3">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -19,7 +20,7 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:background="#DDDDDD">
+        android:background="#ffa3bfd9">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -34,7 +35,7 @@
                 android:clickable="true"
                 android:contentDescription="@string/user_icon"
                 android:src="@drawable/user"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center" />
 
@@ -43,7 +44,7 @@
                 android:layout_height="61dp"
                 android:id="@+id/imageView"
                 android:src="@drawable/logopeq"
-                android:background="#00000000"
+                android:background="@android:drawable/btn_default"
                 android:clickable="true" />
 
             <ImageButton
@@ -51,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnSettings"
                 android:src="@drawable/settings"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:clickable="true" />
@@ -71,22 +72,31 @@
             android:layout_height="wrap_content"
             android:id="@+id/searchView"
             android:queryHint="Buscar Shot"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp" />
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:background="#ffffffff"
+            android:paddingRight="0dp"
+            android:paddingLeft="0dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Shots Recientes:"
-            android:id="@+id/textView3" />
+            android:text="Shots recientes"
+            android:id="@+id/textView3"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif"
+            android:typeface="sans" />
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:id="@+id/listView"
             android:paddingBottom="20dp"
-            android:paddingTop="20dp" />
+            android:paddingTop="20dp"
+            android:background="#ffa3bfd9" />
 
     </LinearLayout>
 
