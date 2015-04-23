@@ -2,6 +2,7 @@ package com.example.ivan.saberespoder;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -37,11 +38,19 @@ public class ShotsDB extends SQLiteOpenHelper {
         db.insert(TableData.ShotInfo.TABLE_NAME, null, contentValues);
         Log.e("DATABASE OPERATIONS", "One row inserted in ");
 
+
+
         for(int i = 0; i<etiquetas.size();i++){
 
         }
     }
-
+    public Cursor getShotInfo(SQLiteDatabase db){
+        Cursor cursor;
+        String[] projections = {TableData.ShotInfo.TITULO, TableData.ShotInfo.CONTENIDO,
+                TableData.ShotInfo.PUNTEO};
+        cursor = db.query(TableData.ShotInfo.TABLE_NAME, projections, null, null, null, null, null);
+        return cursor;
+    }
     public void addEtiquetas(String etiqueta){
 
     }
