@@ -4,7 +4,8 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:orientation="vertical"
-    android:paddingBottom="0dp" tools:context=".MostrarShot">
+    android:paddingBottom="0dp" tools:context=".MostrarShot"
+    android:background="#ff5e9be3">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -19,7 +20,7 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:background="#DDDDDD" >
+        android:background="#ffa3bfd9" >
 
         <LinearLayout
             android:orientation="horizontal"
@@ -34,7 +35,7 @@
                 android:clickable="true"
                 android:contentDescription="@string/user_icon"
                 android:src="@drawable/user"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center" />
 
@@ -43,14 +44,14 @@
                 android:layout_height="61dp"
                 android:id="@+id/imageView4"
                 android:src="@drawable/logopeq"
-                android:background="#00000000" />
+                android:background="@android:drawable/btn_default" />
 
             <ImageButton
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton7"
                 android:src="@drawable/settings"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center" />
         </LinearLayout>
@@ -69,7 +70,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Titulo"
-            android:id="@+id/textView4" />
+            android:id="@+id/textView4"
+            android:textSize="@dimen/abc_text_size_display_1_material" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -82,29 +84,39 @@
                 android:inputType="textMultiLine"
                 android:ems="10"
                 android:id="@+id/editText4"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="#ffa3bfd9" />
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="5"
-                android:textAlignment="center">
+                android:paddingTop="10dp">
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton8" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="5"
+                    android:textAlignment="center"
+                    android:background="#ff3e4952">
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton9" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButton8" />
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton10" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButton9" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButton10" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

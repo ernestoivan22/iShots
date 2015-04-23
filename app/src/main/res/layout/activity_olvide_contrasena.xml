@@ -4,7 +4,8 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:orientation="vertical"
-    android:paddingBottom="0dp" tools:context=".olvide_contrasena">
+    android:paddingBottom="0dp" tools:context=".olvide_contrasena"
+    android:background="#ff5e9be3">
 
 
     <LinearLayout
@@ -20,7 +21,7 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:background="#DDDDDD" >
+        android:background="#ffa3bfd9" >
 
         <LinearLayout
             android:orientation="horizontal"
@@ -35,7 +36,7 @@
                 android:clickable="true"
                 android:contentDescription="@string/user_icon"
                 android:src="@drawable/user"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center" />
 
@@ -44,16 +45,21 @@
                 android:layout_height="61dp"
                 android:id="@+id/imageView6"
                 android:src="@drawable/logopeq"
-                android:background="#00000000" />
+                android:background="@android:drawable/btn_default" />
 
             <ImageButton
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton14"
                 android:src="@drawable/settings"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center" />
         </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></LinearLayout>
 </LinearLayout>

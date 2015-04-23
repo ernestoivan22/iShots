@@ -5,7 +5,8 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.example.ivan.saberespoder.LoginActivity">
+    tools:context="com.example.ivan.saberespoder.LoginActivity"
+    android:background="#ff5e9be3">
 
     <!-- Login progress -->
 
@@ -22,7 +23,7 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:background="#DDDDDD" >
+        android:background="#ff3e4952" >
 
         <LinearLayout
             android:orientation="horizontal"
@@ -37,7 +38,7 @@
                 android:clickable="true"
                 android:contentDescription="@string/user_icon"
                 android:src="@drawable/user"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center" />
 
@@ -46,7 +47,7 @@
                 android:layout_height="61dp"
                 android:id="@+id/imageView5"
                 android:src="@drawable/logopeq"
-                android:background="#00000000"
+                android:background="@android:drawable/btn_default"
                 android:clickable="true" />
 
             <ImageButton
@@ -54,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton12"
                 android:src="@drawable/settings"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:clickable="true" />

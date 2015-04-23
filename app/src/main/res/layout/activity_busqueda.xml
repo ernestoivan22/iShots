@@ -4,7 +4,8 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:orientation="vertical"
-    android:paddingBottom="0dp" tools:context=".Busqueda">
+    android:paddingBottom="0dp" tools:context=".Busqueda"
+    android:background="#ff5e9be3">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -19,7 +20,7 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:background="#DDDDDD" >
+        android:background="#ffa3bfd9" >
 
         <LinearLayout
             android:orientation="horizontal"
@@ -34,7 +35,7 @@
                 android:clickable="true"
                 android:contentDescription="@string/user_icon"
                 android:src="@drawable/user"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center" />
 
@@ -43,14 +44,14 @@
                 android:layout_height="61dp"
                 android:id="@+id/imageView2"
                 android:src="@drawable/logopeq"
-                android:background="#00000000" />
+                android:background="@android:drawable/btn_default" />
 
             <ImageButton
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton3"
                 android:src="@drawable/settings"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center" />
         </LinearLayout>
@@ -70,13 +71,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Resultados:"
+            android:text="Resultados"
             android:id="@+id/textView5" />
 
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/scrollView" >
+            android:id="@+id/scrollView"
+            android:background="#ffa3bfd9">
 
             <ListView
                 android:layout_width="wrap_content"
