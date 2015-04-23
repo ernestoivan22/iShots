@@ -10,7 +10,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -63,7 +63,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="454dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
@@ -91,12 +91,9 @@
             android:typeface="sans" />
 
         <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:id="@+id/listView"
-            android:paddingBottom="20dp"
-            android:paddingTop="20dp"
-            android:background="#ffa3bfd9" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView" />
 
     </LinearLayout>
 
