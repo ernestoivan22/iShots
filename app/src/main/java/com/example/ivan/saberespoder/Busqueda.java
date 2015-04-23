@@ -3,18 +3,33 @@ package com.example.ivan.saberespoder;
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 
 public class Busqueda extends ActionBarActivity {
 
+    ListView myListView;
+    SQLiteDatabase mySqlDB;
+    ShotsDB myShotsDB;
+    Cursor cursor;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
+        myListView = (ListView)findViewById(R.id.listResultados);
+        myShotsDB = new ShotsDB(getApplicationContext());
+        mySqlDB = myShotsDB.getReadableDatabase();
+        cursor = myShotsDB.getShotInfo(mySqlDB);
+
+        if(cursor.moveToFirst())
+
+        myListView = (ListView)findViewById(R.id.listResultados);
 
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
@@ -28,25 +43,4 @@ public class Busqueda extends ActionBarActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_busqueda, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
