@@ -120,7 +120,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         });
 
         ImageView btnLogo = (ImageView) findViewById(R.id.imageView5);
-        btnSettings.setOnClickListener(new OnClickListener() {
+        btnLogo.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this,PantallaPrincipal.class));

@@ -18,6 +18,8 @@ public class PantallaPrincipal extends ActionBarActivity{
         setContentView(R.layout.activity_pantalla_principal);
         getSupportActionBar().hide();
         ImageButton toProfile = (ImageButton) findViewById(R.id.profileButton);
+        ImageButton btnSettings = (ImageButton) findViewById(R.id.btnSettings);
+        ImageView btnLogo = (ImageView) findViewById(R.id.imageView);
         toProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,15 +28,8 @@ public class PantallaPrincipal extends ActionBarActivity{
             }
         });
 
-        ImageButton btnProfile = (ImageButton) findViewById(R.id.profileButton);
-        btnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(PantallaPrincipal.this,LoginActivity.class));
-            }
-        });
 
-        ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton);
+
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +37,8 @@ public class PantallaPrincipal extends ActionBarActivity{
             }
         });
 
-        ImageView btnLogo = (ImageView) findViewById(R.id.imageView);
-        btnSettings.setOnClickListener(new View.OnClickListener() {
+
+        btnLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(PantallaPrincipal.this,PantallaPrincipal.class));
