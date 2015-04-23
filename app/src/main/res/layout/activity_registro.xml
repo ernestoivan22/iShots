@@ -4,7 +4,8 @@ android:layout_height="fill_parent" android:paddingLeft="0dp"
 android:paddingRight="0dp"
 android:paddingTop="0dp"
 android:orientation="vertical"
-android:paddingBottom="0dp" tools:context=".MenuUsuario">
+android:paddingBottom="0dp" tools:context=".MenuUsuario"
+    android:background="#ff5e9be3">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -19,7 +20,7 @@ android:paddingBottom="0dp" tools:context=".MenuUsuario">
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:background="#DDDDDD" >
+        android:background="#ffa3bfd9" >
 
         <LinearLayout
             android:orientation="horizontal"
@@ -34,7 +35,7 @@ android:paddingBottom="0dp" tools:context=".MenuUsuario">
                 android:clickable="true"
                 android:contentDescription="@string/user_icon"
                 android:src="@drawable/user"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center" />
 
@@ -43,14 +44,14 @@ android:paddingBottom="0dp" tools:context=".MenuUsuario">
                 android:layout_height="61dp"
                 android:id="@+id/imageView3"
                 android:src="@drawable/logopeq"
-                android:background="#00000000" />
+                android:background="@android:drawable/btn_default" />
 
             <ImageButton
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton5"
                 android:src="@drawable/settings"
-                android:background="#00000000"
+                android:background="@android:drawable/bottom_bar"
                 android:layout_weight="1"
                 android:layout_gravity="center" />
         </LinearLayout>
@@ -71,7 +72,8 @@ android:paddingBottom="0dp" tools:context=".MenuUsuario">
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Regístrate"
-            android:id="@+id/textView2" />
+            android:id="@+id/textView2"
+            android:paddingBottom="15dp" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -80,7 +82,10 @@ android:paddingBottom="0dp" tools:context=".MenuUsuario">
             android:ems="10"
             android:id="@+id/editText"
             android:textColor="@color/abc_secondary_text_material_light"
-            android:hint="Nombre" />
+            android:hint="Nombre"
+            android:paddingBottom="15dp"
+            android:typeface="sans"
+            android:layout_marginBottom="15dp" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -88,7 +93,10 @@ android:paddingBottom="0dp" tools:context=".MenuUsuario">
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/editText2"
-            android:hint="Correo" />
+            android:hint="Correo"
+            android:paddingBottom="15dp"
+            android:typeface="sans"
+            android:layout_marginBottom="15dp" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -96,13 +104,24 @@ android:paddingBottom="0dp" tools:context=".MenuUsuario">
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/editText3"
-            android:hint="Contraseña" />
+            android:hint="Contraseña"
+            android:paddingBottom="15dp"
+            android:typeface="sans"
+            android:layout_marginBottom="15dp" />
 
-        <Button
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Aceptar"
-            android:id="@+id/button3" />
+            android:layout_height="fill_parent"
+            android:gravity="bottom">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aceptar"
+                android:id="@+id/button3"
+                android:layout_gravity="bottom" />
+        </LinearLayout>
 
     </LinearLayout>
 

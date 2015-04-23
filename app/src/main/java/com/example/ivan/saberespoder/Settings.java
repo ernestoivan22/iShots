@@ -1,9 +1,13 @@
 package com.example.ivan.saberespoder;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 
 public class Settings extends ActionBarActivity {
@@ -12,6 +16,34 @@ public class Settings extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        ImageButton toProfile = (ImageButton) findViewById(R.id.profileButton);
+        ImageButton btnSettings = (ImageButton) findViewById(R.id.btnSettings);
+        ImageView btnLogo = (ImageView) findViewById(R.id.imageView);
+        toProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //attemptLogin();
+                startActivity(new Intent(Settings.this,LoginActivity.class));
+            }
+        });
+
+
+
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Settings.this,Settings.class));
+            }
+        });
+
+
+        btnLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Settings.this,PantallaPrincipal.class));
+            }
+        });
     }
 
 
