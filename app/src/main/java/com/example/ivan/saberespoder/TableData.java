@@ -13,7 +13,7 @@ public class TableData {
     public static abstract class ShotInfo implements BaseColumns{
         public static final String TITULO = "Titulo";
         public static final String CONTENIDO = "Contenido";
-        public static final String PUNTEO = "Punteo";
+        public static final String PUNTEO = "punteo";
 
         public static final String TABLE_NAME = "Shot_Info";
 

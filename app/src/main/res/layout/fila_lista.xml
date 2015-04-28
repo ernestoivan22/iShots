@@ -21,14 +21,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/formato_fila_titulo"
                 android:text="Título"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textColor="#ff000000"
+                android:textStyle="bold" />
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/formato_fila_punteo"
                 android:text="Punteo"
-                android:layout_weight="5" />
+                android:layout_weight="5"
+                android:textColor="#ff000000" />
 
             </LinearLayout>
 
@@ -38,7 +41,8 @@
             android:id="@+id/formato_fila_contenido"
             android:text="Contenido"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp" />
+            android:paddingBottom="10dp"
+            android:textColor="#ff000000" />
     </LinearLayout>
 
 </LinearLayout>
