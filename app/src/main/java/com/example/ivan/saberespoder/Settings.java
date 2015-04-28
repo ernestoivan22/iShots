@@ -17,6 +17,7 @@ public class Settings extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        getSupportActionBar().hide();
 
         ImageButton toProfile = (ImageButton) findViewById(R.id.profileButton);
         ImageButton btnSettings = (ImageButton) findViewById(R.id.btnSettings);
