@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -20,6 +21,7 @@ public class Settings extends ActionBarActivity {
         ImageButton toProfile = (ImageButton) findViewById(R.id.profileButton);
         ImageButton btnSettings = (ImageButton) findViewById(R.id.btnSettings);
         ImageView btnLogo = (ImageView) findViewById(R.id.imageView);
+        Button btnAgregar = (Button) findViewById(R.id.add_Shot);
         toProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +46,14 @@ public class Settings extends ActionBarActivity {
                 startActivity(new Intent(Settings.this,PantallaPrincipal.class));
             }
         });
+
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Settings.this,AgregarShot.class));
+            }
+        });
+
     }
 
 

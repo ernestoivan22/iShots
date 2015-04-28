@@ -16,10 +16,10 @@ public class ShotsDB extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SHOTS.DB";
     private static final int DATABASE_VERSION =1;
     private static final String CREATE_QUERRY =
-            "CREATE TABLE "+TableData.ShotInfo.TABLE_NAME+" ("+TableData.ShotInfo.TITULO+"TEXT, "+TableData.ShotInfo.PUNTEO+"TEXT );"+
+            "CREATE TABLE "+TableData.ShotInfo.TABLE_NAME+" ("+TableData.ShotInfo.TITULO+" TEXT, "+TableData.ShotInfo.CONTENIDO+" TEXT, "+TableData.ShotInfo.PUNTEO+"INT );"+
             "CREATE TABLE "+TableData.Etiquetas.TABLE_NAME+" ("+TableData.Etiquetas.ETIQUETA+" TEXT );"+
-            "CREATE TABLE "+TableData.EtiquetasRelacion.TABLE_NAME+" ("+TableData.EtiquetasRelacion.SHOT_ID+" INT,"+TableData.EtiquetasRelacion.ETIQUETA_ID+" INT);"+
-            "CREATE TABLE "+TableData.UserInfo.TABLE_NAME+" ("+TableData.UserInfo.NOMBRE_USUARIO+" TEXT,"+TableData.UserInfo.CORREO+" TEXT,"+ TableData.UserInfo.PASS_USUARIO+" TEXT);";
+            "CREATE TABLE "+TableData.EtiquetasRelacion.TABLE_NAME+" ("+TableData.EtiquetasRelacion.SHOT_ID+" INT, "+TableData.EtiquetasRelacion.ETIQUETA_ID+" INT);"+
+            "CREATE TABLE "+TableData.UserInfo.TABLE_NAME+" ("+TableData.UserInfo.NOMBRE_USUARIO+" TEXT, "+TableData.UserInfo.CORREO+" TEXT, "+ TableData.UserInfo.PASS_USUARIO+" TEXT);";
     public ShotsDB(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
             Log.e("DATABASE OPERATIONS", "Database created / opened...");

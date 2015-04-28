@@ -1,6 +1,8 @@
 package com.example.ivan.saberespoder;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,9 +11,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 
 public class PantallaPrincipal extends ActionBarActivity{
+    ListView listView;
+    ShotsDB myShotsDB;
+    SQLiteDatabase sqLiteDatabase;
+    Cursor cursor;
+    ListDataAdapter myListDataAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +52,23 @@ public class PantallaPrincipal extends ActionBarActivity{
                 startActivity(new Intent(PantallaPrincipal.this,PantallaPrincipal.class));
             }
         });
+        listView = (ListView)findViewById(R.id.shots_recientes);
+        myListDataAdapter = new ListDataAdapter(getApplicationContext(),R.layout.fila_lista);
+        listView.setAdapter(myListDataAdapter);
+        myShotsDB = new ShotsDB(getApplicationContext());
+        sqLiteDatabase = myShotsDB.getReadableDatabase();
+        cursor = myShotsDB.getShotInfo(sqLiteDatabase);
+        if(cursor.moveToFirst()){
+            do{
+                String titulo, contenido, punteo;
+                titulo = cursor.getString(0);
+                contenido = cursor.getString(1);
+                punteo = cursor.getString(2);
+                DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
+                myListDataAdapter.add(myDataProvider);
+
+            }while(cursor.moveToNext());
+        }
 
     }
 

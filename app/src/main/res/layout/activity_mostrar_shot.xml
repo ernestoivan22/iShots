@@ -85,7 +85,7 @@
                 android:ems="10"
                 android:id="@+id/editText4"
                 android:layout_weight="1"
-                android:background="#ffa3bfd9" />
+                android:background="#ff5e9be3" />
 
             <LinearLayout
                 android:orientation="vertical"

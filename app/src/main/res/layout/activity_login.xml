@@ -23,7 +23,7 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:background="#ff3e4952" >
+        android:background="#ff5e9be3" >
 
         <LinearLayout
             android:orientation="horizontal"
