@@ -1,5 +1,6 @@
 package com.example.ivan.saberespoder;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -60,6 +61,15 @@ public class PantallaPrincipal extends ActionBarActivity{
 
 
         sqLiteDatabase = myShotsDB.getReadableDatabase();
+
+        // Get the intent, verify the action and get the query
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            doMySearch(query);
+        }
+
+
         cursor = myShotsDB.getShotInfo(sqLiteDatabase);
         if(cursor!=null){
             if(cursor.moveToFirst()){
@@ -76,8 +86,14 @@ public class PantallaPrincipal extends ActionBarActivity{
 
         }
 
+
+
+
     }
 
+    private void doMySearch(String query) {
+        Log.e("QUERRY OBTENIDO", query);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
