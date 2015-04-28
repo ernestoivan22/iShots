@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,18 +57,23 @@ public class PantallaPrincipal extends ActionBarActivity{
         myListDataAdapter = new ListDataAdapter(getApplicationContext(),R.layout.fila_lista);
         listView.setAdapter(myListDataAdapter);
         myShotsDB = new ShotsDB(getApplicationContext());
+
+
         sqLiteDatabase = myShotsDB.getReadableDatabase();
         cursor = myShotsDB.getShotInfo(sqLiteDatabase);
-        if(cursor.moveToFirst()){
-            do{
-                String titulo, contenido, punteo;
-                titulo = cursor.getString(0);
-                contenido = cursor.getString(1);
-                punteo = cursor.getString(2);
-                DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
-                myListDataAdapter.add(myDataProvider);
+        if(cursor!=null){
+            if(cursor.moveToFirst()){
+                do{
+                    String titulo, contenido, punteo;
+                    titulo = cursor.getString(0);
+                    contenido = cursor.getString(1);
+                    punteo = cursor.getString(2);
+                    DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
+                    myListDataAdapter.add(myDataProvider);
 
-            }while(cursor.moveToNext());
+                }while(cursor.moveToNext());
+            }
+
         }
 
     }
