@@ -25,7 +25,7 @@ public class Settings extends ActionBarActivity {
         toProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
+                //attemptLogin();m
                 startActivity(new Intent(Settings.this,LoginActivity.class));
             }
         });
