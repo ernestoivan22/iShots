@@ -33,7 +33,7 @@ public class Busqueda extends ActionBarActivity {
 
         myListView = (ListView)findViewById(R.id.listResultados);
 
-        // Get the intent, verify the action and get the query
+        // Get the intent, verify the action and get the query abc
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
