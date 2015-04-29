@@ -91,7 +91,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 if (usuarioIS!=null)
                     startActivity(new Intent(LoginActivity.this,PantallaPrincipal.class));
                 else
-                    Toast.makeText(getApplicationContext(),"Usuario y/o contraseña incorrecto/a.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Correo y/o contraseña incorrectos.",Toast.LENGTH_SHORT).show();
             }
         });
 
