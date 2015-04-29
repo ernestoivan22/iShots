@@ -62,12 +62,6 @@ public class PantallaPrincipal extends ActionBarActivity{
 
         sqLiteDatabase = myShotsDB.getReadableDatabase();
 
-        // Get the intent, verify the action and get the query
-        Intent intent = getIntent();
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            doMySearch(query);
-        }
 
 
         cursor = myShotsDB.getShotInfo(sqLiteDatabase);
@@ -89,10 +83,6 @@ public class PantallaPrincipal extends ActionBarActivity{
 
 
 
-    }
-
-    private void doMySearch(String query) {
-        Log.e("QUERRY OBTENIDO", query);
     }
 
     @Override
