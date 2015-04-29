@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -31,6 +33,36 @@ public class Registro extends ActionBarActivity {
         editText2 = (EditText)this.findViewById(R.id.editText2);
         editText3 = (EditText)this.findViewById(R.id.editText3);
         Button btnAceptar = (Button) findViewById(R.id.button3);
+
+        ImageButton toProfile = (ImageButton) findViewById(R.id.imageButton4);
+        ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton5);
+        ImageView btnLogo = (ImageView) findViewById(R.id.imageView3);
+
+        toProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //attemptLogin();
+                startActivity(new Intent(Registro.this,LoginActivity.class));
+            }
+        });
+
+
+
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Registro.this,Settings.class));
+            }
+        });
+
+
+        btnLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Registro.this,PantallaPrincipal.class));
+            }
+        });
+
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +80,7 @@ public class Registro extends ActionBarActivity {
                     Toast.makeText(getApplicationContext(), "El usuario y/o correo ya han sido utilizados!", Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
 
@@ -72,19 +105,4 @@ public class Registro extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-/*    public void addUser(View view){
-        String nombre = editText.getText().toString();
-        String correo = editText2.getText().toString();
-        String password = editText3.getText().toString();
-
-        myShotsDB= new ShotsDB(context);
-        mySQLiteDB = myShotsDB
-                .getWritableDatabase();
-        myShotsDB.addUsuario(nombre,correo,password, mySQLiteDB,this);
-        Toast.makeText(getBaseContext(), "Data Saved", Toast.LENGTH_LONG).show();
-        myShotsDB.close();
-
-    }*/
-
 }

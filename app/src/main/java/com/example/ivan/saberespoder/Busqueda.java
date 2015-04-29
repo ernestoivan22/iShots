@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 
@@ -27,6 +30,36 @@ public class Busqueda extends ActionBarActivity {
         myListView = (ListView)findViewById(R.id.listResultados);
         myShotsDB = new ShotsDB(getApplicationContext());
         mySqlDB = myShotsDB.getReadableDatabase();
+
+        ImageButton toProfile = (ImageButton) findViewById(R.id.imageButton2);
+        ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton3);
+        ImageView btnLogo = (ImageView) findViewById(R.id.imageView2);
+
+        toProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //attemptLogin();
+                startActivity(new Intent(Busqueda.this,LoginActivity.class));
+            }
+        });
+
+
+
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Busqueda.this,Settings.class));
+            }
+        });
+
+
+        btnLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Busqueda.this,PantallaPrincipal.class));
+            }
+        });
+
         cursor = myShotsDB.getShotInfo(mySqlDB);
 
         if(cursor.moveToFirst())
