@@ -32,13 +32,10 @@ public class TableData {
     }
 
     public static abstract class UserInfo implements BaseColumns{
+        public static final String ID_USUARIO = "Id_Usuario";
         public static final String NOMBRE_USUARIO = "Nombre_Usuario";
         public static final String PASS_USUARIO = "Password";
         public static final String CORREO = "Correo";
-
-
         public static final String TABLE_NAME = "User_Info";
-
-
     }
 }

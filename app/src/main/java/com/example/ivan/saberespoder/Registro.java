@@ -30,12 +30,22 @@ public class Registro extends ActionBarActivity {
         editText = (EditText)this.findViewById(R.id.editText);
         editText2 = (EditText)this.findViewById(R.id.editText2);
         editText3 = (EditText)this.findViewById(R.id.editText3);
-
         Button btnAceptar = (Button) findViewById(R.id.button3);
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Registro.this, PantallaPrincipal.class));
+                ShotsDB shotsUser = new ShotsDB(context);
+                boolean bandera;
+                mySQLiteDB = shotsUser.getWritableDatabase();
+                bandera = shotsUser.addUsuario(editText.getText().toString(),editText2.getText().toString(),editText3.getText().toString(), mySQLiteDB);
+                shotsUser.close();
+
+                if (bandera) {
+                    startActivity(new Intent(Registro.this, PantallaPrincipal.class));
+                    Toast.makeText(getApplicationContext(),"Has creado tu usuario exitosamente!",Toast.LENGTH_LONG).show();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "El usuario y/o correo ya han sido utilizados!", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -63,7 +73,7 @@ public class Registro extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addUser(View view){
+/*    public void addUser(View view){
         String nombre = editText.getText().toString();
         String correo = editText2.getText().toString();
         String password = editText3.getText().toString();
@@ -71,10 +81,10 @@ public class Registro extends ActionBarActivity {
         myShotsDB= new ShotsDB(context);
         mySQLiteDB = myShotsDB
                 .getWritableDatabase();
-        myShotsDB.addUsuario(nombre,correo,password, mySQLiteDB);
+        myShotsDB.addUsuario(nombre,correo,password, mySQLiteDB,this);
         Toast.makeText(getBaseContext(), "Data Saved", Toast.LENGTH_LONG).show();
         myShotsDB.close();
 
-    }
+    }*/
 
 }

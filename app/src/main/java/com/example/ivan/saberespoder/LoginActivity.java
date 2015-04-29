@@ -10,6 +10,7 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -28,6 +29,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    SQLiteDatabase mySQLiteDB;
+    Usuario usuarioIS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +76,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    //attemptLogin();
                     return true;
                 }
                 return false;
@@ -83,9 +87,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
-                startActivity(new Intent(LoginActivity.this,PantallaPrincipal.class));
-
+                usuarioIS = attemptLogin();
+                if (usuarioIS!=null)
+                    startActivity(new Intent(LoginActivity.this,PantallaPrincipal.class));
+                else
+                    Toast.makeText(getApplicationContext(),"Usuario y/o contraseña incorrecto/a.",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -133,6 +139,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mProgressView = findViewById(R.id.login_progress);
     }
 
+
+
     private void populateAutoComplete() {
         getLoaderManager().initLoader(0, null, this);
     }
@@ -143,10 +151,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    public void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
+    public Usuario attemptLogin() {
 
         // Reset errors.
         mEmailView.setError(null);
@@ -161,7 +166,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password) /*&& !isPasswordValid(password)*/) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -182,12 +187,17 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
+            return null;
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            ShotsDB inicioSesion = new ShotsDB(this);
+            mySQLiteDB = inicioSesion.getReadableDatabase();
+            Usuario user;
+            user = inicioSesion.iniciarSesion(email,password,mySQLiteDB);
+            mySQLiteDB.close();
+            return user;
         }
     }
 

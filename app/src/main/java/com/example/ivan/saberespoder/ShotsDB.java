@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -15,18 +16,21 @@ import java.util.List;
 public class ShotsDB extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SHOTS.DB";
     private static final int DATABASE_VERSION =1;
-    private static final String CREATE_QUERRY =
-            "CREATE TABLE "+TableData.ShotInfo.TABLE_NAME+" ("+TableData.ShotInfo.TITULO+" TEXT, "+TableData.ShotInfo.CONTENIDO+" TEXT, "+TableData.ShotInfo.PUNTEO+" TEXT);"+
-            "CREATE TABLE "+TableData.Etiquetas.TABLE_NAME+" ("+TableData.Etiquetas.ETIQUETA+" TEXT );"+
-            "CREATE TABLE "+TableData.EtiquetasRelacion.TABLE_NAME+" ("+TableData.EtiquetasRelacion.SHOT_ID+" INT, "+TableData.EtiquetasRelacion.ETIQUETA_ID+" INT);"+
-            "CREATE TABLE "+TableData.UserInfo.TABLE_NAME+" ("+TableData.UserInfo.NOMBRE_USUARIO+" TEXT, "+TableData.UserInfo.CORREO+" TEXT, "+ TableData.UserInfo.PASS_USUARIO+" TEXT);";
+    private static final String CREATE_QUERRY1 = "CREATE TABLE "+TableData.ShotInfo.TABLE_NAME+" ("+TableData.ShotInfo.TITULO+" TEXT, "+TableData.ShotInfo.CONTENIDO+" TEXT, "+TableData.ShotInfo.PUNTEO+" TEXT);";
+    private static final String CREATE_QUERRY2 = "CREATE TABLE "+TableData.Etiquetas.TABLE_NAME+" ("+TableData.Etiquetas.ETIQUETA+" TEXT );";
+    private static final String CREATE_QUERRY3 =  "CREATE TABLE "+TableData.EtiquetasRelacion.TABLE_NAME+" ("+TableData.EtiquetasRelacion.SHOT_ID+" INT, "+TableData.EtiquetasRelacion.ETIQUETA_ID+" INT);";
+    private static final String CREATE_QUERRY4 = "CREATE TABLE "+TableData.UserInfo.TABLE_NAME+" ("+TableData.UserInfo.ID_USUARIO+" INT, "+TableData.UserInfo.NOMBRE_USUARIO+" TEXT, "+TableData.UserInfo.CORREO+" TEXT, "+ TableData.UserInfo.PASS_USUARIO+" TEXT);";
+
     public ShotsDB(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
             Log.e("DATABASE OPERATIONS", "Database created / opened...");
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_QUERRY);
+        db.execSQL(CREATE_QUERRY1);
+        db.execSQL(CREATE_QUERRY2);
+        db.execSQL(CREATE_QUERRY3);
+        db.execSQL(CREATE_QUERRY4);
         Log.e("DATABASE OPERATIONS", "Tables Created...");
     }
 
@@ -59,13 +63,75 @@ public class ShotsDB extends SQLiteOpenHelper {
 
     }
 
-    public void addUsuario(String nombre, String password, String correo, SQLiteDatabase db){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(TableData.UserInfo.NOMBRE_USUARIO, nombre);
-        contentValues.put(TableData.UserInfo.CORREO, correo);
-        contentValues.put(TableData.UserInfo.PASS_USUARIO, password);
-        db.insert(TableData.ShotInfo.TABLE_NAME, null, contentValues);
-        Log.e("DATABASE OPERATIONS", "One row inserted in ");
+    public Usuario iniciarSesion(String correo, String password, SQLiteDatabase db){
+
+        Cursor cursor;
+        String[] projections = {TableData.UserInfo.CORREO,
+                TableData.UserInfo.PASS_USUARIO,
+                TableData.UserInfo.NOMBRE_USUARIO,
+                TableData.UserInfo.ID_USUARIO};
+
+        String passwordUsuario, correoUsuario, nombreUsuario="";
+        int id_usuario=0;
+
+        cursor = db.query(TableData.UserInfo.TABLE_NAME, projections,null,null,null,null,null);
+
+        boolean banderaExiste = false;
+        if(cursor!=null){
+            if(cursor.moveToFirst()){
+                do{
+
+                    correoUsuario = cursor.getString(0);
+                    passwordUsuario = cursor.getString(1);
+                    nombreUsuario = cursor.getString(2);
+                    id_usuario = cursor.getInt(3);
+                    if (correoUsuario.equals(correo) || passwordUsuario.equals(password))
+                        banderaExiste = true;
+                }while(cursor.moveToNext() && !banderaExiste);
+            }
+
+        }
+
+        if (!banderaExiste)
+            return null;
+        else
+            return new Usuario(id_usuario, nombreUsuario);
+    }
+
+    public boolean addUsuario(String nombre, String correo, String password, SQLiteDatabase db){
+
+        Cursor cursor;
+        String[] projections = {TableData.UserInfo.NOMBRE_USUARIO, TableData.UserInfo.CORREO,
+                TableData.UserInfo.PASS_USUARIO};
+
+        cursor = db.query(TableData.UserInfo.TABLE_NAME, projections,null,null,null,null,null);
+
+        boolean banderaExiste = false;
+        if(cursor!=null){
+            if(cursor.moveToFirst()){
+                do{
+                    String nombreUsuario, correoUsuario;
+                    nombreUsuario = cursor.getString(0);
+                    correoUsuario = cursor.getString(1);
+                    if (nombreUsuario.equals(nombre) || correoUsuario.equals(correo))
+                        banderaExiste = true;
+                }while(cursor.moveToNext());
+            }
+
+        }
+
+        if (!banderaExiste){
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(TableData.UserInfo.NOMBRE_USUARIO, nombre);
+            contentValues.put(TableData.UserInfo.CORREO, correo);
+            contentValues.put(TableData.UserInfo.PASS_USUARIO, password);
+            db.insert(TableData.UserInfo.TABLE_NAME, null, contentValues);
+            Log.e("DATABASE OPERATIONS", "One row inserted in ");
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

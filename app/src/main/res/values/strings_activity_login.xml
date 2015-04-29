@@ -9,7 +9,7 @@
     <string name= "action_register">Registrarse</string>
 
     <string name="error_invalid_email">Se ingreso un correo invalido</string>
-    <string name="error_invalid_password">La contraseña es muy corta</string>
+    <string name="error_invalid_password">Debe ingresar la constraseña</string>
     <string name="error_incorrect_password">Se ingreso una contrasea equivocada</string>
     <string name="error_field_required">Campo obligatorio</string>
     <string name="action_forgot_password">Olvide mi contraseña</string>
