@@ -85,7 +85,7 @@ public class ShotsDB extends SQLiteOpenHelper {
                     passwordUsuario = cursor.getString(1);
                     nombreUsuario = cursor.getString(2);
                     id_usuario = cursor.getInt(3);
-                    if (correoUsuario.equals(correo) || passwordUsuario.equals(password))
+                    if (correoUsuario.equals(correo) && passwordUsuario.equals(password))
                         banderaExiste = true;
                 }while(cursor.moveToNext() && !banderaExiste);
             }

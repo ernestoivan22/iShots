@@ -197,6 +197,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             Usuario user;
             user = inicioSesion.iniciarSesion(email,password,mySQLiteDB);
             mySQLiteDB.close();
+            showProgress(false);
             return user;
         }
     }
