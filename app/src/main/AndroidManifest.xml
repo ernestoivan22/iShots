@@ -5,7 +5,7 @@
     <!-- To access Google+ APIs: rex -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!--
- To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
+ To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect ***
      option is required to comply with the Google+ Sign-In developer policies
     -->
     <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- To retrieve the account name (email) as part of sign-in: -->
@@ -35,7 +35,11 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name=".Busqueda"
@@ -44,9 +48,7 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
+
         </activity>
         <activity
             android:name=".LoginActivity"
