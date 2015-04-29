@@ -69,7 +69,7 @@ public class ShotsDB extends SQLiteOpenHelper {
         String[] projections = {TableData.UserInfo.CORREO,
                 TableData.UserInfo.PASS_USUARIO,
                 TableData.UserInfo.NOMBRE_USUARIO,
-                TableData.UserInfo.ID_USUARIO};
+                String.valueOf(TableData.UserInfo.ID_USUARIO)};
 
         String passwordUsuario, correoUsuario, nombreUsuario="";
         int id_usuario=0;
@@ -127,6 +127,7 @@ public class ShotsDB extends SQLiteOpenHelper {
             contentValues.put(TableData.UserInfo.PASS_USUARIO, password);
             db.insert(TableData.UserInfo.TABLE_NAME, null, contentValues);
             Log.e("DATABASE OPERATIONS", "One row inserted in ");
+            TableData.UserInfo.ID_USUARIO++;
             return true;
         }
         else {

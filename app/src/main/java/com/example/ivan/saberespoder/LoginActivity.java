@@ -103,14 +103,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             }
         });
 
-        Button bOlvideContrasena = (Button) findViewById(R.id.button2);
-        bOlvideContrasena.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,olvide_contrasena.class));
-            }
-        });
-
         ImageButton btnProfile = (ImageButton) findViewById(R.id.imageButton11);
         btnProfile.setOnClickListener(new OnClickListener() {
             @Override

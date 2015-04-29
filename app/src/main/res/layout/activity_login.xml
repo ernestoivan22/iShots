@@ -128,13 +128,6 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical" />
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/action_forgot_password"
-            android:id="@+id/button2"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical" />
     </LinearLayout>
 
 </LinearLayout>
