@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -37,9 +38,11 @@ public class Busqueda extends ActionBarActivity {
             String query = intent.getStringExtra(SearchManager.QUERY);
             doMySearch(query);
         }
+
     }
 
     private void doMySearch(String query) {
+        Log.e("QUERRY OBTENIDO", query);
     }
 
 
