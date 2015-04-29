@@ -54,6 +54,15 @@ public class PantallaPrincipal extends ActionBarActivity{
                 startActivity(new Intent(PantallaPrincipal.this,PantallaPrincipal.class));
             }
         });
+
+        Button btn = (Button)findViewById(R.id.btn_buscar);
+        btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+        public void onClick(View arg0){
+                onSearchRequested();
+            }
+        });
+
         listView = (ListView)findViewById(R.id.shots_recientes);
         myListDataAdapter = new ListDataAdapter(getApplicationContext(),R.layout.fila_lista);
         listView.setAdapter(myListDataAdapter);

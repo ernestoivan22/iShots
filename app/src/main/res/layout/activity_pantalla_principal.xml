@@ -67,15 +67,11 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
-        <SearchView
+        <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/searchView"
-            android:paddingTop="0dp"
-            android:paddingBottom="0dp"
-            android:background="#ffffffff"
-            android:paddingRight="0dp"
-            android:paddingLeft="0dp" />
+            android:text="Buscar Shots"
+            android:id="@+id/btn_buscar" />
 
         <TextView
             android:layout_width="wrap_content"

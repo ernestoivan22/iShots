@@ -23,6 +23,7 @@ public class Busqueda extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
+        getSupportActionBar().hide();
         myListView = (ListView)findViewById(R.id.listResultados);
         myShotsDB = new ShotsDB(getApplicationContext());
         mySqlDB = myShotsDB.getReadableDatabase();
