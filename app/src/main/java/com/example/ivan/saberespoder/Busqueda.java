@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class Busqueda extends ActionBarActivity {
@@ -22,14 +23,12 @@ public class Busqueda extends ActionBarActivity {
     SQLiteDatabase mySqlDB;
     ShotsDB myShotsDB;
     Cursor cursor;
+    ListDataAdapter myListDataAdapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
         getSupportActionBar().hide();
-        myListView = (ListView)findViewById(R.id.listResultados);
-        myShotsDB = new ShotsDB(getApplicationContext());
-        mySqlDB = myShotsDB.getReadableDatabase();
 
         ImageButton toProfile = (ImageButton) findViewById(R.id.imageButton2);
         ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton3);
@@ -60,23 +59,39 @@ public class Busqueda extends ActionBarActivity {
             }
         });
 
-        cursor = myShotsDB.getShotInfo(mySqlDB);
-
-        if(cursor.moveToFirst())
-
-        myListView = (ListView)findViewById(R.id.listResultados);
-
         // Get the intent, verify the action and get the query abc
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             doMySearch(query);
         }
-
     }
 
     private void doMySearch(String query) {
-        Log.e("QUERRY OBTENIDO", query);
+        myListView = (ListView)findViewById(R.id.listResultados);
+        myListDataAdapter = new ListDataAdapter(getApplicationContext(),R.layout.fila_lista);
+        myListView.setAdapter(myListDataAdapter);
+
+        myShotsDB = new ShotsDB(getApplicationContext());
+        mySqlDB = myShotsDB.getReadableDatabase();
+
+        cursor = myShotsDB.getShotInfo(mySqlDB);
+
+        if(cursor.moveToFirst()){
+            do{
+                String titulo, contenido, punteo;
+                titulo = cursor.getString(0);
+                contenido = cursor.getString(1);
+                punteo = cursor.getString(2);
+                DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
+                myListDataAdapter.add(myDataProvider);
+
+            }while(cursor.moveToNext());
+        }
+        else{
+            Toast.makeText(getBaseContext(), "No hubo coincidencias", Toast.LENGTH_LONG).show();
+        }
+
     }
 
 
