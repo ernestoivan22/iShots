@@ -75,7 +75,7 @@ public class Busqueda extends ActionBarActivity {
         myShotsDB = new ShotsDB(getApplicationContext());
         mySqlDB = myShotsDB.getReadableDatabase();
 
-        cursor = myShotsDB.getShotInfo(mySqlDB);
+        cursor = myShotsDB.getSpecificShotInfo(mySqlDB,query);
 
         if(cursor.moveToFirst()){
             do{

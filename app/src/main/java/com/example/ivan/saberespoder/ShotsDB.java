@@ -59,6 +59,18 @@ public class ShotsDB extends SQLiteOpenHelper {
         }
 
     }
+
+    public Cursor getSpecificShotInfo(SQLiteDatabase db, String toSearch){
+        Cursor cursor;
+        String[] projections = {TableData.ShotInfo.TITULO, TableData.ShotInfo.CONTENIDO,
+                TableData.ShotInfo.PUNTEO};
+        String selection = TableData.ShotInfo.CONTENIDO +" LIKE ? OR "+TableData.ShotInfo.TITULO+" LIKE ?";
+        String[] selection_args = {"%"+toSearch+"%","%"+toSearch+"%"};
+
+        cursor = db.query(TableData.ShotInfo.TABLE_NAME, projections, selection, selection_args, null, null, null);
+        return cursor;
+    }
+
     public void addEtiquetas(String etiqueta){
 
     }
