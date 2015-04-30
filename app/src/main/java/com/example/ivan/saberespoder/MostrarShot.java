@@ -1,17 +1,39 @@
 package com.example.ivan.saberespoder;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MostrarShot extends ActionBarActivity {
-
+    TextView tituloS;
+    EditText contenidoS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_shot);
+        getSupportActionBar().hide();
+        Log.e("MENSAJE", "CAMBIO DE ACTIVITY");
+        Intent intent = getIntent();
+        String[] titulosList = intent.getStringArrayExtra("listaTitulos");
+        String[] contenidosList = intent.getStringArrayExtra("listaContenidos");
+        int posicionShot = intent.getIntExtra("positionShot",0);
+
+        tituloS = (TextView)findViewById(R.id.titulo_Shot_mostrar);
+        contenidoS = (EditText)findViewById(R.id.contenido_Shot_mostrar);
+
+        tituloS.setText(titulosList[posicionShot]);
+
+        contenidoS.setText(contenidosList[posicionShot],TextView.BufferType.EDITABLE);
+        contenidoS.setFocusable(false);
+
+
     }
 
 

@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Titulo"
-            android:id="@+id/textView4"
+            android:id="@+id/titulo_Shot_mostrar"
             android:textSize="@dimen/abc_text_size_display_1_material" />
 
         <LinearLayout
@@ -83,9 +83,10 @@
                 android:layout_height="fill_parent"
                 android:inputType="textMultiLine"
                 android:ems="10"
-                android:id="@+id/editText4"
+                android:id="@+id/contenido_Shot_mostrar"
                 android:layout_weight="1"
-                android:background="#ff5e9be3" />
+                android:background="#ff5e9be3"
+                android:longClickable="false"/>
 
             <LinearLayout
                 android:orientation="vertical"
