@@ -69,11 +69,14 @@ public class Registro extends ActionBarActivity {
                 ShotsDB shotsUser = new ShotsDB(context);
                 boolean bandera;
                 mySQLiteDB = shotsUser.getWritableDatabase();
-                bandera = shotsUser.addUsuario(editText.getText().toString(),editText2.getText().toString(),editText3.getText().toString(), mySQLiteDB);
+                Usuario user = shotsUser.addUsuario(editText.getText().toString(),editText2.getText().toString(),editText3.getText().toString(), mySQLiteDB);
+                bandera = user != null;
                 shotsUser.close();
 
                 if (bandera) {
-                    startActivity(new Intent(Registro.this, PantallaPrincipal.class));
+                    Intent i = new Intent(Registro.this, PantallaPrincipal.class);
+                    i.putExtra("user",user);
+                    startActivity(i);
                     Toast.makeText(getApplicationContext(),"Has creado tu usuario exitosamente!",Toast.LENGTH_LONG).show();
                 }
                 else

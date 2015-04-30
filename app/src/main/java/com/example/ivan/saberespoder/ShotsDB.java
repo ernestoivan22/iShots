@@ -19,7 +19,8 @@ public class ShotsDB extends SQLiteOpenHelper {
     private static final String CREATE_QUERRY1 = "CREATE TABLE "+TableData.ShotInfo.TABLE_NAME+" ("+TableData.ShotInfo.TITULO+" TEXT, "+TableData.ShotInfo.CONTENIDO+" TEXT, "+TableData.ShotInfo.PUNTEO+" TEXT);";
     private static final String CREATE_QUERRY2 = "CREATE TABLE "+TableData.Etiquetas.TABLE_NAME+" ("+TableData.Etiquetas.ETIQUETA+" TEXT );";
     private static final String CREATE_QUERRY3 =  "CREATE TABLE "+TableData.EtiquetasRelacion.TABLE_NAME+" ("+TableData.EtiquetasRelacion.SHOT_ID+" INT, "+TableData.EtiquetasRelacion.ETIQUETA_ID+" INT);";
-    private static final String CREATE_QUERRY4 = "CREATE TABLE "+TableData.UserInfo.TABLE_NAME+" ("+TableData.UserInfo.ID_USUARIO+" INT, "+TableData.UserInfo.NOMBRE_USUARIO+" TEXT, "+TableData.UserInfo.CORREO+" TEXT, "+ TableData.UserInfo.PASS_USUARIO+" TEXT);";
+    private static final String CREATE_QUERRY4 = "CREATE TABLE "+TableData.UserInfo.TABLE_NAME+" ("+TableData.UserInfo.ID_USUARIO+" INTEGER PRIMARY KEY, "+TableData.UserInfo.NOMBRE_USUARIO+" TEXT, "+TableData.UserInfo.CORREO+" TEXT, "+ TableData.UserInfo.PASS_USUARIO+" TEXT);";
+    private static final String CREATE_QUERRY5 = "CREATE TABLE "+TableData.SesionActiva.TABLE_NAME+" ("+TableData.SesionActiva.id+" INT, "+TableData.SesionActiva.id_user+" INT, "+TableData.SesionActiva.username+" TEXT, "+ TableData.SesionActiva.enSesion+" INT);";
 
     public ShotsDB(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,6 +32,7 @@ public class ShotsDB extends SQLiteOpenHelper {
         db.execSQL(CREATE_QUERRY2);
         db.execSQL(CREATE_QUERRY3);
         db.execSQL(CREATE_QUERRY4);
+        db.execSQL(CREATE_QUERRY5);
         Log.e("DATABASE OPERATIONS", "Tables Created...");
     }
 
@@ -106,19 +108,31 @@ public class ShotsDB extends SQLiteOpenHelper {
 
         if (!banderaExiste)
             return null;
-        else
+        else {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(String.valueOf(TableData.SesionActiva.id), 1);
+            contentValues.put(String.valueOf(TableData.SesionActiva.id_user), id_usuario);
+            contentValues.put(TableData.SesionActiva.username, nombreUsuario);
+            contentValues.put(String.valueOf(TableData.SesionActiva.enSesion), 1);
+
+            String selection = TableData.SesionActiva.id+" = ?";
+            String[] selection_args = {"1"};
+            db.update(TableData.SesionActiva.TABLE_NAME,contentValues,selection,selection_args);
+
             return new Usuario(id_usuario, nombreUsuario);
+        }
     }
 
-    public boolean addUsuario(String nombre, String correo, String password, SQLiteDatabase db){
-
+    public Usuario addUsuario(String nombre, String correo, String password, SQLiteDatabase db){
         Cursor cursor;
         String[] projections = {TableData.UserInfo.NOMBRE_USUARIO, TableData.UserInfo.CORREO,
                 TableData.UserInfo.PASS_USUARIO};
 
         cursor = db.query(TableData.UserInfo.TABLE_NAME, projections,null,null,null,null,null);
-
+        boolean tablaVacia;
+        tablaVacia = cursor.getCount() == 0;
         boolean banderaExiste = false;
+
         if(cursor!=null){
             if(cursor.moveToFirst()){
                 do{
@@ -139,11 +153,25 @@ public class ShotsDB extends SQLiteOpenHelper {
             contentValues.put(TableData.UserInfo.PASS_USUARIO, password);
             db.insert(TableData.UserInfo.TABLE_NAME, null, contentValues);
             Log.e("DATABASE OPERATIONS", "One row inserted in ");
-            TableData.UserInfo.ID_USUARIO++;
-            return true;
+
+            contentValues = new ContentValues();
+            contentValues.put(String.valueOf(TableData.SesionActiva.id), 1);
+            contentValues.put(String.valueOf(TableData.SesionActiva.id_user), cursor.getCount());
+            contentValues.put(TableData.SesionActiva.username, nombre);
+            contentValues.put(String.valueOf(TableData.SesionActiva.enSesion), 1);
+            if (tablaVacia){
+                db.insert(TableData.SesionActiva.TABLE_NAME, null, contentValues);
+            }
+            else{
+                String selection = TableData.SesionActiva.id+" = ?";
+                String[] selection_args = {"1"};
+                db.update(TableData.SesionActiva.TABLE_NAME,contentValues,selection,selection_args);
+            }
+            Usuario user = new Usuario(cursor.getCount(),nombre);
+            return user;
         }
         else {
-            return false;
+            return null;
         }
     }
     @Override

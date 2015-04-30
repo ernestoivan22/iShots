@@ -4,6 +4,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ProfileActivity extends ActionBarActivity {
@@ -12,7 +18,29 @@ public class ProfileActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        ListView listView1 = (ListView) findViewById(R.id.listView);
+        String[] opciones  = {"Mis shots","Calificar shots","Mis favoritos","Cerrar sesión"};
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, opciones);
+        listView1.setAdapter(adapter);
+
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                switch(position){
+                    case 0://Mostrar shots
+                        break;
+                    case 1://Calificar shots
+                        break;
+                    case 2://Mis favoritos
+                        break;
+                    case 3://Cerrar sesion
+                        break;
+                }
+            }
+        });
     }
 
 
