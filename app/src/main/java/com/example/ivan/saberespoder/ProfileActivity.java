@@ -97,7 +97,7 @@ public class ProfileActivity extends ActionBarActivity {
                     case 4://Cerrar sesion
                         ShotsDB myShotsDB = new ShotsDB(getApplicationContext());
                         mySQLiteDB = myShotsDB.getWritableDatabase();
-                        myShotsDB.cerrarSesion(mySQLiteDB,usuarioIS);
+                        myShotsDB.cerrarSesion(mySQLiteDB, usuarioIS);
                         mySQLiteDB.close();
                         startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
                         finish();
@@ -107,6 +107,14 @@ public class ProfileActivity extends ActionBarActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(ProfileActivity.this,PantallaPrincipal.class);
+        if (usuarioIS!=null)
+            i.putExtra("usuario", usuarioIS);
+        startActivity(i);
+        finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
