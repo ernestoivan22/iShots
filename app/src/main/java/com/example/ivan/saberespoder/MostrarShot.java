@@ -31,6 +31,7 @@ public class MostrarShot extends ActionBarActivity {
     ImageButton speech;
     TTSManager ttsManager;
     Usuario usuarioIS;
+    ImageButton favorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,13 @@ public class MostrarShot extends ActionBarActivity {
                 finish();
             }
         });
-
+        //-----------------------------Desabilitar like--------------------
+        if(usuarioIS==null){
+            ((ImageButton)findViewById(R.id.btn_like_mostrar)).setVisibility(Button.INVISIBLE);
+        }
+        else{
+            ((ImageButton)findViewById(R.id.btn_like_mostrar)).setVisibility(Button.VISIBLE);
+        }
         //----------------------------Cargar elementos----------------------------
         Intent intent = getIntent();
         titulosList = intent.getStringArrayExtra("listaTitulos");
@@ -122,6 +129,15 @@ public class MostrarShot extends ActionBarActivity {
             public void onClick(View arg0) {
                 String text = contenidosList[posicionShot];
                 ttsManager.initQueue(text);
+            }
+        });
+
+        //-------------------------------Agregar Favorito-------------------------------------
+        favorite = (ImageButton)findViewById(R.id.btn_like_mostrar);
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

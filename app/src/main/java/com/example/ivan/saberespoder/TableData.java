@@ -16,6 +16,7 @@ public class TableData {
         public static final String PUNTEO = "punteo";
         public static final String ID_USUARIO = "Id_Usuario";
         public static final String TABLE_NAME = "Shot_Info";
+        public static final String ID_SHOT = "Id_Shot";
 
 
     }
@@ -45,5 +46,11 @@ public class TableData {
         public static String username = "USERNAME";
         public static String enSesion = "EN_SESION";
         public static final String TABLE_NAME = "SESION_ACTIVA";
+    }
+
+    public static abstract class shotsFavoritos implements BaseColumns{
+        public static String ID_USUARIO = "Id_Usuario";
+        public static String ID_SHOT = "Id_Shot";
+        public static final String TABLE_NAME = "SHOTS_FAVORITOS";
     }
 }
