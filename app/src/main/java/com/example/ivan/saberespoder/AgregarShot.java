@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,7 +24,6 @@ public class AgregarShot extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //holi
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_agregar_shot);
@@ -33,6 +33,7 @@ public class AgregarShot extends ActionBarActivity {
         ImageButton toProfile = (ImageButton) findViewById(R.id.imageButton);
         ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton15);
         ImageView btnLogo = (ImageView) findViewById(R.id.imageView7);
+        Button btnCancelar = (Button) findViewById(R.id.button4);
         usuarioIS = getIntent().getParcelableExtra("usuario");
         toProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +61,17 @@ public class AgregarShot extends ActionBarActivity {
             }
         });
 
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AgregarShot.this,ProfileActivity.class);
+                if (usuarioIS!=null)
+                    i.putExtra("usuario", usuarioIS);
+                startActivity(i);
+                finish();
+            }
+        });
+
         btnLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +83,6 @@ public class AgregarShot extends ActionBarActivity {
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,7 +115,7 @@ public class AgregarShot extends ActionBarActivity {
             String contenido = ShotContent.getText().toString();
             myShotsDB =  new ShotsDB(context);
             sqLiteDatabase = myShotsDB.getWritableDatabase();
-            myShotsDB.addShotInfo(titulo,contenido,0,null,sqLiteDatabase);
+            myShotsDB.addShotInfo(titulo,contenido,0,null,sqLiteDatabase,usuarioIS);
             Toast.makeText(getBaseContext(),"Shot guardado", Toast.LENGTH_LONG).show();
             ShotTitle.setText("");
             ShotContent.setText("");

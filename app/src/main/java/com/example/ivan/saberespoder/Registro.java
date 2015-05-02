@@ -33,7 +33,7 @@ public class Registro extends ActionBarActivity {
         editText2 = (EditText)this.findViewById(R.id.editText2);
         editText3 = (EditText)this.findViewById(R.id.editText3);
         Button btnAceptar = (Button) findViewById(R.id.button3);
-
+        Button btnCancelar  = (Button) findViewById(R.id.button2);
         ImageButton toProfile = (ImageButton) findViewById(R.id.imageButton4);
         ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton5);
         ImageView btnLogo = (ImageView) findViewById(R.id.imageView3);
@@ -41,7 +41,6 @@ public class Registro extends ActionBarActivity {
         toProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
                 startActivity(new Intent(Registro.this,LoginActivity.class));
             }
         });
@@ -60,6 +59,14 @@ public class Registro extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Registro.this,PantallaPrincipal.class));
+            }
+        });
+
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Registro.this,LoginActivity.class));
+                finish();
             }
         });
 

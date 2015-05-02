@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Titulo"
+            android:text="Título"
             android:id="@+id/titulo_Shot_mostrar"
             android:textSize="@dimen/abc_text_size_display_1_material" />
 
@@ -86,7 +86,8 @@
                 android:id="@+id/contenido_Shot_mostrar"
                 android:layout_weight="1"
                 android:background="#ff5e9be3"
-                android:longClickable="false"/>
+                android:longClickable="false"
+                android:gravity="top" />
 
             <LinearLayout
                 android:orientation="vertical"

@@ -110,17 +110,25 @@ android:paddingBottom="0dp" tools:context=".MenuUsuario"
             android:layout_marginBottom="15dp" />
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="bottom">
+            android:gravity="bottom|center_horizontal"
+            android:weightSum="1">
 
             <Button
-                android:layout_width="match_parent"
+                android:layout_width="122dp"
                 android:layout_height="wrap_content"
                 android:text="Aceptar"
                 android:id="@+id/button3"
                 android:layout_gravity="bottom" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:id="@+id/button2"
+                android:layout_weight="0.21" />
         </LinearLayout>
 
     </LinearLayout>

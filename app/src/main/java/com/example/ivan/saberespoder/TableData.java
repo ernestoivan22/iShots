@@ -14,7 +14,7 @@ public class TableData {
         public static final String TITULO = "Titulo";
         public static final String CONTENIDO = "Contenido";
         public static final String PUNTEO = "punteo";
-
+        public static final String ID_USUARIO = "Id_Usuario";
         public static final String TABLE_NAME = "Shot_Info";
 
 

@@ -62,13 +62,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Agregar un Shot"
+        android:text="Agregar shot"
         android:id="@+id/textView6" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="362dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:paddingLeft="20dp"
@@ -80,7 +80,8 @@
             android:id="@+id/shot_titulo"
             android:editable="true"
             android:background="#fffff9ff"
-            android:hint="Ingrese el Titulo" />
+            android:hint="Ingrese el título"
+            android:capitalize="sentences" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -88,19 +89,37 @@
             android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/shot_contenido"
-            android:hint="Ingrese el Contenido del Shot"
+            android:hint="Ingrese el contenido del shot"
             android:background="#fffafbff"
             android:editable="true"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:gravity="top"
+            android:capitalize="sentences" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:gravity="center_horizontal">
 
         <Button
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="Agregar Shot"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:text="Agregar"
             android:id="@+id/btn_agregar_shot"
-            android:layout_weight="6"
-            android:onClick="addShot" />
+            android:onClick="addShot"
+            android:layout_weight="0.08" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:id="@+id/button4"
+            android:layout_weight="0.08" />
     </LinearLayout>
 </LinearLayout>

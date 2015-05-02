@@ -16,7 +16,7 @@ import java.util.List;
 public class ShotsDB extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SHOTS.DB";
     private static final int DATABASE_VERSION =1;
-    private static final String CREATE_QUERRY1 = "CREATE TABLE "+TableData.ShotInfo.TABLE_NAME+" ("+TableData.ShotInfo.TITULO+" TEXT, "+TableData.ShotInfo.CONTENIDO+" TEXT, "+TableData.ShotInfo.PUNTEO+" TEXT);";
+    private static final String CREATE_QUERRY1 = "CREATE TABLE "+TableData.ShotInfo.TABLE_NAME+" ("+TableData.ShotInfo.TITULO+" TEXT, "+TableData.ShotInfo.CONTENIDO+" TEXT, "+TableData.ShotInfo.PUNTEO+" TEXT, "+TableData.ShotInfo.ID_USUARIO+" INT);";
     private static final String CREATE_QUERRY2 = "CREATE TABLE "+TableData.Etiquetas.TABLE_NAME+" ("+TableData.Etiquetas.ETIQUETA+" TEXT );";
     private static final String CREATE_QUERRY3 =  "CREATE TABLE "+TableData.EtiquetasRelacion.TABLE_NAME+" ("+TableData.EtiquetasRelacion.SHOT_ID+" INT, "+TableData.EtiquetasRelacion.ETIQUETA_ID+" INT);";
     private static final String CREATE_QUERRY4 = "CREATE TABLE "+TableData.UserInfo.TABLE_NAME+" ("+TableData.UserInfo.ID_USUARIO+" INTEGER PRIMARY KEY, "+TableData.UserInfo.NOMBRE_USUARIO+" TEXT, "+TableData.UserInfo.CORREO+" TEXT, "+ TableData.UserInfo.PASS_USUARIO+" TEXT);";
@@ -36,15 +36,14 @@ public class ShotsDB extends SQLiteOpenHelper {
         Log.e("DATABASE OPERATIONS", "Tables Created...");
     }
 
-    public void addShotInfo(String titulo, String contenido, int punteo, List<String> etiquetas, SQLiteDatabase db){
+    public void addShotInfo(String titulo, String contenido, int punteo, List<String> etiquetas, SQLiteDatabase db, Usuario user){
         ContentValues contentValues = new ContentValues();
         contentValues.put(TableData.ShotInfo.TITULO, titulo);
         contentValues.put(TableData.ShotInfo.CONTENIDO, contenido);
         contentValues.put(TableData.ShotInfo.PUNTEO, punteo);
+        contentValues.put(TableData.ShotInfo.PUNTEO, user.id);
         db.insert(TableData.ShotInfo.TABLE_NAME, null, contentValues);
-        Log.e("DATABASE OPERATIONS", "One row inserted in ");
-
-
+        Log.e("DATABASE OPERATIONS", "One row inserted in. ID:"+user.id);
     }
     public Cursor getShotInfo(SQLiteDatabase db){
         try{
