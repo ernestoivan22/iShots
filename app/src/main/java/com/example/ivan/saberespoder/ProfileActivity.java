@@ -1,6 +1,7 @@
 package com.example.ivan.saberespoder;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 public class ProfileActivity extends ActionBarActivity {
 
+    SQLiteDatabase mySQLiteDB;
     Usuario usuarioIS;
 
     @Override
@@ -89,6 +91,12 @@ public class ProfileActivity extends ActionBarActivity {
                     case 3://Mis favoritos
                         break;
                     case 4://Cerrar sesion
+                        ShotsDB myShotsDB = new ShotsDB(getApplicationContext());
+                        mySQLiteDB = myShotsDB.getWritableDatabase();
+                        myShotsDB.cerrarSesion(mySQLiteDB,usuarioIS);
+                        mySQLiteDB.close();
+                        startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                        finish();
                         break;
                 }
             }

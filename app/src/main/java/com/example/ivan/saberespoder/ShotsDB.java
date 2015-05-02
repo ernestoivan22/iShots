@@ -77,6 +77,15 @@ public class ShotsDB extends SQLiteOpenHelper {
 
     }
 
+    public void cerrarSesion(SQLiteDatabase db, Usuario user){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(String.valueOf(TableData.SesionActiva.id), 1);
+        contentValues.put(String.valueOf(TableData.SesionActiva.id_user), user.id);
+        contentValues.put(TableData.SesionActiva.username, user.nombre);
+        contentValues.put(String.valueOf(TableData.SesionActiva.enSesion), 0);
+        db.update(TableData.SesionActiva.TABLE_NAME,contentValues,null,null);
+    }
+
     public Usuario getUsuarioIS(SQLiteDatabase db){
         Cursor cursor;
         String[] projections = {TableData.SesionActiva.id_user,
