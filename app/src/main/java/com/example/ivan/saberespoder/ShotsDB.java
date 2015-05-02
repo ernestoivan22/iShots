@@ -16,7 +16,7 @@ import java.util.List;
 public class ShotsDB extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SHOTS.DB";
     private static final int DATABASE_VERSION =1;
-    private static final String CREATE_QUERRY1 = "CREATE TABLE "+TableData.ShotInfo.TABLE_NAME+" ("+TableData.ShotInfo.TITULO+" TEXT, "+TableData.ShotInfo.CONTENIDO+" TEXT, "+TableData.ShotInfo.PUNTEO+" TEXT, "+TableData.ShotInfo.ID_USUARIO+" INT, "+TableData.ShotInfo.ID_SHOT+"INTEGER PRIMARY KEY);";
+    private static final String CREATE_QUERRY1 = "CREATE TABLE "+TableData.ShotInfo.TABLE_NAME+" ("+TableData.ShotInfo.TITULO+" TEXT, "+TableData.ShotInfo.CONTENIDO+" TEXT, "+TableData.ShotInfo.PUNTEO+" TEXT, "+TableData.ShotInfo.ID_USUARIO+" INT, "+TableData.ShotInfo.ID_SHOT+" INTEGER PRIMARY KEY);";
     private static final String CREATE_QUERRY2 = "CREATE TABLE "+TableData.Etiquetas.TABLE_NAME+" ("+TableData.Etiquetas.ETIQUETA+" TEXT );";
     private static final String CREATE_QUERRY3 =  "CREATE TABLE "+TableData.EtiquetasRelacion.TABLE_NAME+" ("+TableData.EtiquetasRelacion.SHOT_ID+" INT, "+TableData.EtiquetasRelacion.ETIQUETA_ID+" INT);";
     private static final String CREATE_QUERRY4 = "CREATE TABLE "+TableData.UserInfo.TABLE_NAME+" ("+TableData.UserInfo.ID_USUARIO+" INTEGER PRIMARY KEY, "+TableData.UserInfo.NOMBRE_USUARIO+" TEXT, "+TableData.UserInfo.CORREO+" TEXT, "+ TableData.UserInfo.PASS_USUARIO+" TEXT);";
@@ -34,6 +34,7 @@ public class ShotsDB extends SQLiteOpenHelper {
         db.execSQL(CREATE_QUERRY3);
         db.execSQL(CREATE_QUERRY4);
         db.execSQL(CREATE_QUERRY5);
+        db.execSQL(CREATE_QUERRY6);
         Log.e("DATABASE OPERATIONS", "Tables Created...");
     }
 
@@ -47,7 +48,8 @@ public class ShotsDB extends SQLiteOpenHelper {
         Log.e("DATABASE OPERATIONS", "One row inserted in. ID:"+user.id);
     }
 
-    public void addShotFavorito(int userId, int shotId, SQLiteDatabase db){
+    public void addShotFavorito(String userId, String tituloShot, String contenidoShot, SQLiteDatabase db){
+        String shotId = getId_Shot(db, tituloShot,contenidoShot);
         ContentValues contentValues = new ContentValues();
         contentValues.put(TableData.shotsFavoritos.ID_SHOT, shotId);
         contentValues.put(TableData.shotsFavoritos.ID_USUARIO, userId);
@@ -55,7 +57,12 @@ public class ShotsDB extends SQLiteOpenHelper {
         Log.e("DATABASE OPERATIONS", "One row inserted in. SHOTS_FAVORITOS");
     }
 
-
+    public void deleteShotFavorito(String userId, String tituloShot, String contenidoShot, SQLiteDatabase db){
+        String shotId = getId_Shot(db, tituloShot,contenidoShot);
+        String selection = TableData.shotsFavoritos.ID_SHOT +" = ? AND "+TableData.shotsFavoritos.ID_USUARIO+" = ?";
+        String[] selection_args = {shotId, userId};
+        db.delete(TableData.shotsFavoritos.TABLE_NAME,selection,selection_args);
+    }
 
     public Cursor getMyShots(SQLiteDatabase db, Usuario user){
         Cursor cursor;
@@ -92,6 +99,88 @@ public class ShotsDB extends SQLiteOpenHelper {
 
         cursor = db.query(TableData.ShotInfo.TABLE_NAME, projections, selection, selection_args, null, null, null);
         return cursor;
+    }
+
+    public boolean esFavorito(SQLiteDatabase db, String shot_titulo, String shot_contenido, String user_id){
+        Cursor cursor;
+        boolean bandera = false;
+        String[] projections = {TableData.shotsFavoritos.ID_SHOT};
+        String selection = TableData.shotsFavoritos.ID_USUARIO+" = ?";
+        String[] selection_args = {user_id};
+
+        String shot_id = getId_Shot(db,shot_titulo,shot_contenido);
+
+        cursor = db.query(TableData.shotsFavoritos.TABLE_NAME, projections, selection, selection_args, null, null, null);
+        if(cursor.moveToFirst()){
+            do{
+                String shot;
+                shot = cursor.getString(0);
+                if(shot.equals(shot_id)){
+                    bandera = true;
+                }
+
+            }while(cursor.moveToNext());
+        }
+        return bandera;
+    }
+
+    public String getId_Shot(SQLiteDatabase db, String titulo_shot, String contenido_shot){
+        Cursor cursor;
+        String[] projections = {TableData.ShotInfo.ID_SHOT};
+        String selection = TableData.ShotInfo.CONTENIDO +" = ? AND "+TableData.ShotInfo.TITULO+" = ?";
+        String[] selection_args = {contenido_shot,titulo_shot};
+
+        cursor = db.query(TableData.ShotInfo.TABLE_NAME, projections, selection, selection_args, null, null, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                String id;
+                id = cursor.getString(0);
+                return id;
+
+            }while(cursor.moveToNext());
+
+        }
+        Log.e("BUSCANDO ID", "No se encontro");
+        return "0";
+
+    }
+
+    public Cursor getFavoritos(SQLiteDatabase db, String user_id){
+        Cursor cursor;
+        Cursor cursor2;
+        String argumentos = "";
+
+        //------------------------Obtener los ids de los shots------------------------------
+        String[] projections = {TableData.shotsFavoritos.ID_SHOT};
+
+        String selection = TableData.shotsFavoritos.ID_USUARIO+" = ?";
+        String[] selection_args = {user_id};
+
+        cursor = db.query(TableData.shotsFavoritos.TABLE_NAME, projections, selection, selection_args, null, null, null);
+        if(cursor.moveToFirst()){
+            do{
+                String shot;
+                shot = cursor.getString(0);
+                argumentos += shot+", ";
+
+            }while(cursor.moveToNext());
+            argumentos = argumentos.substring(0, argumentos.length()-3);
+            Log.e("RESULTADO IDS", argumentos);
+
+        }
+        else{
+            return cursor;
+        }
+
+        //----------------------------------Obtener los shots--------------------------------------
+        String[] projections2 = {TableData.ShotInfo.TITULO, TableData.ShotInfo.CONTENIDO,
+                TableData.ShotInfo.PUNTEO};
+        String selection2 = user_id+" in("+argumentos+")";
+
+        cursor2 = db.query(TableData.ShotInfo.TABLE_NAME, projections2, selection2, null, null, null, null);
+        return cursor2;
+
     }
 
     public void addEtiquetas(String etiqueta){

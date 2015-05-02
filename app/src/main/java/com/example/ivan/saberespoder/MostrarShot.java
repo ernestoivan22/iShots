@@ -2,6 +2,8 @@ package com.example.ivan.saberespoder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
@@ -32,6 +34,9 @@ public class MostrarShot extends ActionBarActivity {
     TTSManager ttsManager;
     Usuario usuarioIS;
     ImageButton favorite;
+
+    SQLiteDatabase mySqlDB;
+    ShotsDB myShotsDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +84,7 @@ public class MostrarShot extends ActionBarActivity {
                 finish();
             }
         });
-        //-----------------------------Desabilitar like--------------------
-        if(usuarioIS==null){
-            ((ImageButton)findViewById(R.id.btn_like_mostrar)).setVisibility(Button.INVISIBLE);
-        }
-        else{
-            ((ImageButton)findViewById(R.id.btn_like_mostrar)).setVisibility(Button.VISIBLE);
-        }
+
         //----------------------------Cargar elementos----------------------------
         Intent intent = getIntent();
         titulosList = intent.getStringArrayExtra("listaTitulos");
@@ -100,6 +99,26 @@ public class MostrarShot extends ActionBarActivity {
         contenidoS.setText(contenidosList[posicionShot],TextView.BufferType.EDITABLE);
         contenidoS.setFocusable(false);
 
+        //-----------------------------Desabilitar like--------------------
+        if(usuarioIS==null){
+            ((ImageButton)findViewById(R.id.btn_like_mostrar)).setVisibility(Button.INVISIBLE);
+        }
+        else{
+            ((ImageButton)findViewById(R.id.btn_like_mostrar)).setVisibility(Button.VISIBLE);
+            myShotsDB = new ShotsDB(getApplicationContext());
+            mySqlDB = myShotsDB.getReadableDatabase();
+            favorite = (ImageButton)findViewById(R.id.btn_like_mostrar);
+            boolean liked = myShotsDB.esFavorito(mySqlDB, titulosList[posicionShot],contenidosList[posicionShot],usuarioIS.id+"");
+            if(liked){
+                int id = getResources().getIdentifier("like", "drawable", getPackageName());
+                favorite.setImageResource(id);
+            }
+            else{
+                int id = getResources().getIdentifier("likeoutline", "drawable", getPackageName());
+                favorite.setImageResource(id);
+            }
+        }
+
         //-------------------------------Detectar Swipe-----------------------------
         findViewById(R.id.contenido_Shot_mostrar).setOnTouchListener(new OnSwipeTouchListener(context) {
             @Override
@@ -109,6 +128,21 @@ public class MostrarShot extends ActionBarActivity {
                 }
                 tituloS.setText(titulosList[posicionShot]);
                 contenidoS.setText(contenidosList[posicionShot],TextView.BufferType.EDITABLE);
+
+                if(!(usuarioIS == null)){
+                    myShotsDB = new ShotsDB(getApplicationContext());
+                    mySqlDB = myShotsDB.getReadableDatabase();
+
+                    boolean liked = myShotsDB.esFavorito(mySqlDB, titulosList[posicionShot],contenidosList[posicionShot],usuarioIS.id+"");
+                    //------quitar de favoritos------------
+                    if(!liked){
+                        favorite.setImageResource(R.drawable.likeoutline);
+                    }
+                    //-----------agregar a favoritos-----------
+                    else{
+                        favorite.setImageResource(R.drawable.like);
+                    }
+                }
             }
             @Override
             public void onSwipeRight() {
@@ -117,9 +151,25 @@ public class MostrarShot extends ActionBarActivity {
                 }
                 tituloS.setText(titulosList[posicionShot]);
                 contenidoS.setText(contenidosList[posicionShot],TextView.BufferType.EDITABLE);
+
+                if(!(usuarioIS == null)){
+                    myShotsDB = new ShotsDB(getApplicationContext());
+                    mySqlDB = myShotsDB.getReadableDatabase();
+
+                    boolean liked = myShotsDB.esFavorito(mySqlDB, titulosList[posicionShot],contenidosList[posicionShot],usuarioIS.id+"");
+                    //------quitar de favoritos------------
+                    if(!liked){
+                        favorite.setImageResource(R.drawable.likeoutline);
+                    }
+                    //-----------agregar a favoritos-----------
+                    else{
+                        favorite.setImageResource(R.drawable.like);
+                    }
+                }
+
             }
         });
-
+        favorite = (ImageButton)findViewById(R.id.btn_like_mostrar);
         //-------------------------------Realizar Speech------------------------------------
         ttsManager = new TTSManager();
         ttsManager.init(this);
@@ -132,12 +182,25 @@ public class MostrarShot extends ActionBarActivity {
             }
         });
 
-        //-------------------------------Agregar Favorito-------------------------------------
+        //-------------------------------Agregar/Quitar Favorito-------------------------------------
         favorite = (ImageButton)findViewById(R.id.btn_like_mostrar);
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                myShotsDB = new ShotsDB(getApplicationContext());
+                mySqlDB = myShotsDB.getReadableDatabase();
 
+                boolean liked = myShotsDB.esFavorito(mySqlDB, titulosList[posicionShot],contenidosList[posicionShot],usuarioIS.id+"");
+                //------quitar de favoritos------------
+                if(!liked){
+                    favorite.setImageResource(R.drawable.like);
+                    myShotsDB.addShotFavorito(usuarioIS.id+"",titulosList[posicionShot],contenidosList[posicionShot],mySqlDB);
+                }
+                //-----------agregar a favoritos-----------
+                else{
+                    favorite.setImageResource(R.drawable.likeoutline);
+                    myShotsDB.deleteShotFavorito(usuarioIS.id+"",titulosList[posicionShot],contenidosList[posicionShot],mySqlDB);
+                }
             }
         });
 
