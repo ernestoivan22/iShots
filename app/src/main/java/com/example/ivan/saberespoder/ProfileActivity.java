@@ -49,6 +49,7 @@ public class ProfileActivity extends ActionBarActivity {
                     i = new Intent(ProfileActivity.this,ProfileActivity.class);
                     i.putExtra("usuario", usuarioIS);
                 }
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -59,6 +60,7 @@ public class ProfileActivity extends ActionBarActivity {
                 Intent i = new Intent(ProfileActivity.this,Settings.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -69,6 +71,7 @@ public class ProfileActivity extends ActionBarActivity {
                 Intent i = new Intent(ProfileActivity.this,PantallaPrincipal.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -82,13 +85,15 @@ public class ProfileActivity extends ActionBarActivity {
                         Intent i = new Intent(ProfileActivity.this,AgregarShot.class);
                         if (usuarioIS!=null)
                             i.putExtra("usuario", usuarioIS);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(i);
                         break;
                     case 1://Mis shots
                         Intent ii = new Intent(ProfileActivity.this,Busqueda.class);
                         if (usuarioIS!=null)
                             ii.putExtra("usuario", usuarioIS);
-                            ii.putExtra("llamada_de",0); //para saber que desplegar
+                        ii.putExtra("llamada_de",0); //para saber que desplegar
+                        ii.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(ii);
                         break;
                     case 2://Calificar shots
@@ -98,6 +103,7 @@ public class ProfileActivity extends ActionBarActivity {
                         if (usuarioIS!=null)
                             iiii.putExtra("usuario", usuarioIS);
                         iiii.putExtra("llamada_de",1); //para saber que desplegar
+                        iiii.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(iiii);
                         break;
                     case 4://Cerrar sesion
@@ -105,7 +111,9 @@ public class ProfileActivity extends ActionBarActivity {
                         mySQLiteDB = myShotsDB.getWritableDatabase();
                         myShotsDB.cerrarSesion(mySQLiteDB, usuarioIS);
                         mySQLiteDB.close();
-                        startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                        Intent iiiii = new Intent(ProfileActivity.this, LoginActivity.class);
+                        iiiii.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(iiiii);
                         finish();
                         break;
                 }
@@ -118,6 +126,7 @@ public class ProfileActivity extends ActionBarActivity {
         Intent i = new Intent(ProfileActivity.this,PantallaPrincipal.class);
         if (usuarioIS!=null)
             i.putExtra("usuario", usuarioIS);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         finish();
     }

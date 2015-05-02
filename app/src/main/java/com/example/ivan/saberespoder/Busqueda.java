@@ -50,6 +50,7 @@ public class Busqueda extends ActionBarActivity {
                     i = new Intent(Busqueda.this,ProfileActivity.class);
                     i.putExtra("usuario", usuarioIS);
                 }
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -60,6 +61,7 @@ public class Busqueda extends ActionBarActivity {
                 Intent i = new Intent(Busqueda.this,Settings.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -70,6 +72,7 @@ public class Busqueda extends ActionBarActivity {
                 Intent i = new Intent(Busqueda.this,PantallaPrincipal.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -114,6 +117,7 @@ public class Busqueda extends ActionBarActivity {
                 intent.putExtra("positionShot", position);
                 if (usuarioIS!=null)
                     intent.putExtra("usuario", usuarioIS);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
             }
@@ -201,5 +205,4 @@ public class Busqueda extends ActionBarActivity {
         }
         myShotsDB.close();
     }
-
 }

@@ -90,6 +90,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 if (usuarioIS!=null) {
                     Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
                     i.putExtra("usuario",usuarioIS);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                     finish();
                 }else
@@ -101,7 +102,9 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         bRegistrar.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,Registro.class));
+                Intent i = new Intent(LoginActivity.this,Registro.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 finish();
             }
         });
@@ -117,6 +120,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                     i = new Intent(LoginActivity.this,ProfileActivity.class);
                     i.putExtra("usuario", usuarioIS);
                 }
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -128,6 +132,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 Intent i = new Intent(LoginActivity.this,Settings.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -139,6 +144,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 Intent i = new Intent(LoginActivity.this,PantallaPrincipal.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -147,12 +153,9 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mProgressView = findViewById(R.id.login_progress);
     }
 
-
-
     private void populateAutoComplete() {
         getLoaderManager().initLoader(0, null, this);
     }
-
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -299,7 +302,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
     }
-
 
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.

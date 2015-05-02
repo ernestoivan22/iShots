@@ -58,6 +58,7 @@ public class MostrarShot extends ActionBarActivity {
                     i = new Intent(MostrarShot.this, ProfileActivity.class);
                     i.putExtra("usuario", usuarioIS);
                 }
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
             }
@@ -69,6 +70,7 @@ public class MostrarShot extends ActionBarActivity {
                 Intent i = new Intent(MostrarShot.this, Settings.class);
                 if (usuarioIS != null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
             }
@@ -80,6 +82,7 @@ public class MostrarShot extends ActionBarActivity {
                 Intent i = new Intent(MostrarShot.this, PantallaPrincipal.class);
                 if (usuarioIS != null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
             }

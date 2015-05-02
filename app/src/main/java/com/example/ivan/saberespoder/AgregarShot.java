@@ -45,6 +45,7 @@ public class AgregarShot extends ActionBarActivity {
                     i = new Intent(AgregarShot.this, ProfileActivity.class);
                     i.putExtra("usuario", usuarioIS);
                 }
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
             }
@@ -56,6 +57,7 @@ public class AgregarShot extends ActionBarActivity {
                 Intent i = new Intent(AgregarShot.this,Settings.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
             }
@@ -67,6 +69,7 @@ public class AgregarShot extends ActionBarActivity {
                 Intent i = new Intent(AgregarShot.this,ProfileActivity.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
             }
@@ -78,6 +81,7 @@ public class AgregarShot extends ActionBarActivity {
                 Intent i = new Intent(AgregarShot.this,PantallaPrincipal.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
             }

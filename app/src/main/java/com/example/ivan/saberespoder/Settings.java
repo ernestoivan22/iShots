@@ -35,6 +35,7 @@ public class Settings extends ActionBarActivity {
                     i = new Intent(Settings.this,ProfileActivity.class);
                     i.putExtra("usuario", usuarioIS);
                 }
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -45,6 +46,7 @@ public class Settings extends ActionBarActivity {
                 Intent i = new Intent(Settings.this,Settings.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -55,12 +57,12 @@ public class Settings extends ActionBarActivity {
                 Intent i = new Intent(Settings.this,PantallaPrincipal.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

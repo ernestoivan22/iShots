@@ -161,7 +161,7 @@ public class PantallaPrincipal extends ActionBarActivity{
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             intent.putExtra("usuario", usuarioIS);
         }
-
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         super.startActivity(intent);
     }
 

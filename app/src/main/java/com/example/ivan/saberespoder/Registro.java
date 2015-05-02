@@ -23,7 +23,6 @@ public class Registro extends ActionBarActivity {
     TableData myTableData;
     SQLiteDatabase mySQLiteDB;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +40,9 @@ public class Registro extends ActionBarActivity {
         toProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Registro.this,LoginActivity.class));
+                Intent i = new Intent(Registro.this,LoginActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 
@@ -50,7 +51,9 @@ public class Registro extends ActionBarActivity {
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Registro.this,Settings.class));
+                Intent i = new Intent(Registro.this,Settings.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 
@@ -58,14 +61,18 @@ public class Registro extends ActionBarActivity {
         btnLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Registro.this,PantallaPrincipal.class));
+                Intent i = new Intent(Registro.this,PantallaPrincipal.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Registro.this,LoginActivity.class));
+                Intent i = new Intent(Registro.this,LoginActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 finish();
             }
         });
@@ -83,6 +90,7 @@ public class Registro extends ActionBarActivity {
                 if (bandera) {
                     Intent i = new Intent(Registro.this, ProfileActivity.class);
                     i.putExtra("usuario",user);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                     finish();
                     Toast.makeText(getApplicationContext(),"Has creado tu usuario exitosamente!",Toast.LENGTH_LONG).show();
@@ -93,7 +101,6 @@ public class Registro extends ActionBarActivity {
         });
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
