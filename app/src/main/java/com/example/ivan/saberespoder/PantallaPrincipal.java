@@ -155,5 +155,14 @@ public class PantallaPrincipal extends ActionBarActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void startActivity(Intent intent) {
+        // check if search intent
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            intent.putExtra("usuario", usuarioIS);
+        }
+
+        super.startActivity(intent);
+    }
 
 }

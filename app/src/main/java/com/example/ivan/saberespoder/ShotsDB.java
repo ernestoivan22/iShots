@@ -223,7 +223,7 @@ public class ShotsDB extends SQLiteOpenHelper {
         String[] projections = {TableData.UserInfo.CORREO,
                 TableData.UserInfo.PASS_USUARIO,
                 TableData.UserInfo.NOMBRE_USUARIO,
-                String.valueOf(TableData.UserInfo.ID_USUARIO)};
+                TableData.UserInfo.ID_USUARIO};
 
         String passwordUsuario, correoUsuario, nombreUsuario="";
         int id_usuario=0;
@@ -265,13 +265,12 @@ public class ShotsDB extends SQLiteOpenHelper {
     public Usuario addUsuario(String nombre, String correo, String password, SQLiteDatabase db){
         Cursor cursor;
         String[] projections = {TableData.UserInfo.NOMBRE_USUARIO, TableData.UserInfo.CORREO,
-                TableData.UserInfo.PASS_USUARIO};
+                TableData.UserInfo.ID_USUARIO};
 
         cursor = db.query(TableData.UserInfo.TABLE_NAME, projections,null,null,null,null,null);
         boolean tablaVacia;
         tablaVacia = cursor.getCount() == 0;
         boolean banderaExiste = false;
-
         if(cursor!=null){
             if(cursor.moveToFirst()){
                 do{
@@ -295,7 +294,7 @@ public class ShotsDB extends SQLiteOpenHelper {
 
             contentValues = new ContentValues();
             contentValues.put(String.valueOf(TableData.SesionActiva.id), 1);
-            contentValues.put(String.valueOf(TableData.SesionActiva.id_user), cursor.getCount());
+            contentValues.put(String.valueOf(TableData.SesionActiva.id_user), cursor.getCount()+1);
             contentValues.put(TableData.SesionActiva.username, nombre);
             contentValues.put(String.valueOf(TableData.SesionActiva.enSesion), 1);
             if (tablaVacia){
@@ -306,7 +305,7 @@ public class ShotsDB extends SQLiteOpenHelper {
                 String[] selection_args = {"1"};
                 db.update(TableData.SesionActiva.TABLE_NAME,contentValues,selection,selection_args);
             }
-            Usuario user = new Usuario(cursor.getCount(),nombre);
+            Usuario user = new Usuario(cursor.getCount()+1,nombre);
             return user;
         }
         else {
