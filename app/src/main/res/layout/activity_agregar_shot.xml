@@ -81,12 +81,13 @@
             android:editable="true"
             android:background="#fffff9ff"
             android:hint="Ingrese el título"
-            android:capitalize="sentences" />
+            android:capitalize="sentences"
+            android:inputType="textCapSentences"/>
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:inputType="textMultiLine"
+            android:inputType="textMultiLine|textCapSentences"
             android:ems="10"
             android:id="@+id/shot_contenido"
             android:hint="Ingrese el contenido del shot"
@@ -96,7 +97,7 @@
             android:layout_weight="1"
             android:layout_marginBottom="10dp"
             android:gravity="top"
-            android:capitalize="sentences" />
+            android:capitalize="sentences"/>
 
     </LinearLayout>
 
