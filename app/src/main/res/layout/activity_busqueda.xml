@@ -75,7 +75,7 @@
             android:id="@+id/textView5" />
 
         <ListView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/listResultados"
             android:headerDividersEnabled="false"

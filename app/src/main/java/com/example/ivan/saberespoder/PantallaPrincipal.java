@@ -123,6 +123,8 @@ public class PantallaPrincipal extends ActionBarActivity{
                 intent.putExtra("listaTitulos",listaTitulos);
                 intent.putExtra("listaContenidos", listaContenidos);
                 intent.putExtra("positionShot", position);
+                if (usuarioIS!=null)
+                    intent.putExtra("usuario", usuarioIS);
                 startActivity(intent);
 
             }

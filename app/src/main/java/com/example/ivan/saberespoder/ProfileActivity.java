@@ -85,6 +85,10 @@ public class ProfileActivity extends ActionBarActivity {
                         startActivity(i);
                         break;
                     case 1://Mis shots
+                        Intent ii = new Intent(ProfileActivity.this,Busqueda.class);
+                        if (usuarioIS!=null)
+                            ii.putExtra("usuario", usuarioIS);
+                        startActivity(ii);
                         break;
                     case 2://Calificar shots
                         break;

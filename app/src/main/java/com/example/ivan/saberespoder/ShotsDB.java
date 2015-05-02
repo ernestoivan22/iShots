@@ -41,10 +41,21 @@ public class ShotsDB extends SQLiteOpenHelper {
         contentValues.put(TableData.ShotInfo.TITULO, titulo);
         contentValues.put(TableData.ShotInfo.CONTENIDO, contenido);
         contentValues.put(TableData.ShotInfo.PUNTEO, punteo);
-        contentValues.put(TableData.ShotInfo.PUNTEO, user.id);
+        contentValues.put(TableData.ShotInfo.ID_USUARIO, user.id);
         db.insert(TableData.ShotInfo.TABLE_NAME, null, contentValues);
         Log.e("DATABASE OPERATIONS", "One row inserted in. ID:"+user.id);
     }
+
+    public Cursor getMyShots(SQLiteDatabase db, Usuario user){
+        Cursor cursor;
+        String[] projections = {TableData.ShotInfo.TITULO, TableData.ShotInfo.CONTENIDO,
+                TableData.ShotInfo.PUNTEO};
+        String selection = TableData.ShotInfo.ID_USUARIO+" = ?";
+        String[] selection_args = {String.valueOf(user.id)};
+        cursor = db.query(TableData.ShotInfo.TABLE_NAME, projections, selection, selection_args, null, null, null);
+        return cursor;
+    }
+
     public Cursor getShotInfo(SQLiteDatabase db){
         try{
             Cursor cursor;

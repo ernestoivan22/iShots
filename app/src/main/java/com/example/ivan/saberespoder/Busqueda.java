@@ -80,6 +80,9 @@ public class Busqueda extends ActionBarActivity {
             String query = intent.getStringExtra(SearchManager.QUERY);
             doMySearch(query);
         }
+        else{
+            searchMyShots();
+        }
 
         //Detectar taps
         myListView = (ListView)findViewById(R.id.listResultados);
@@ -103,6 +106,8 @@ public class Busqueda extends ActionBarActivity {
                 intent.putExtra("listaTitulos",listaTitulos);
                 intent.putExtra("listaContenidos", listaContenidos);
                 intent.putExtra("positionShot", position);
+                if (usuarioIS!=null)
+                    intent.putExtra("usuario", usuarioIS);
                 startActivity(intent);
 
             }
@@ -135,7 +140,33 @@ public class Busqueda extends ActionBarActivity {
         else{
             Toast.makeText(getBaseContext(), "No hubo coincidencias", Toast.LENGTH_LONG).show();
         }
+        myShotsDB.close();
+    }
 
+    private void searchMyShots() {
+        myListView = (ListView)findViewById(R.id.listResultados);
+        myListDataAdapter = new ListDataAdapter(getApplicationContext(),R.layout.fila_lista);
+        myListView.setAdapter(myListDataAdapter);
+
+        myShotsDB = new ShotsDB(getApplicationContext());
+        mySqlDB = myShotsDB.getReadableDatabase();
+
+        cursor = myShotsDB.getMyShots(mySqlDB,usuarioIS);
+
+        if(cursor.moveToFirst()){
+            do{
+                String titulo, contenido, punteo;
+                titulo = cursor.getString(0);
+                contenido = cursor.getString(1);
+                punteo = cursor.getString(2);
+                DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
+                myListDataAdapter.add(myDataProvider);
+            }while(cursor.moveToNext());
+        }
+        else{
+            Toast.makeText(getBaseContext(), "No hubo coincidencias", Toast.LENGTH_LONG).show();
+        }
+        myShotsDB.close();
     }
 
 
