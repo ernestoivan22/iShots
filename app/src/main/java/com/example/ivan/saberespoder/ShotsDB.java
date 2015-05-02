@@ -165,7 +165,7 @@ public class ShotsDB extends SQLiteOpenHelper {
                 argumentos += shot+", ";
 
             }while(cursor.moveToNext());
-            argumentos = argumentos.substring(0, argumentos.length()-3);
+            argumentos = argumentos.substring(0, argumentos.length()-4);
             Log.e("RESULTADO IDS", argumentos);
 
         }

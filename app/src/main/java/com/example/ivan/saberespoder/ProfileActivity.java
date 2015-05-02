@@ -88,11 +88,17 @@ public class ProfileActivity extends ActionBarActivity {
                         Intent ii = new Intent(ProfileActivity.this,Busqueda.class);
                         if (usuarioIS!=null)
                             ii.putExtra("usuario", usuarioIS);
+                            ii.putExtra("llamada_de",0); //para saber que desplegar
                         startActivity(ii);
                         break;
                     case 2://Calificar shots
                         break;
                     case 3://Mis favoritos
+                        Intent iiii = new Intent(ProfileActivity.this,Busqueda.class);
+                        if (usuarioIS!=null)
+                            iiii.putExtra("usuario", usuarioIS);
+                        iiii.putExtra("llamada_de",1); //para saber que desplegar
+                        startActivity(iiii);
                         break;
                     case 4://Cerrar sesion
                         ShotsDB myShotsDB = new ShotsDB(getApplicationContext());

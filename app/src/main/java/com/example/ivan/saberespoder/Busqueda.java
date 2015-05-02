@@ -81,7 +81,13 @@ public class Busqueda extends ActionBarActivity {
             doMySearch(query);
         }
         else{
-            searchMyShots();
+            if(intent.getIntExtra("llamada_de",0)==0){
+                searchMyShots();
+            }
+            else if(intent.getIntExtra("llamada_de",0)==1){
+                searchMyFavoriteShots();
+            }
+
         }
 
         //Detectar taps
@@ -164,10 +170,36 @@ public class Busqueda extends ActionBarActivity {
             }while(cursor.moveToNext());
         }
         else{
-            Toast.makeText(getBaseContext(), "No hubo coincidencias", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Aún no ha creado Shots", Toast.LENGTH_LONG).show();
         }
         myShotsDB.close();
     }
 
+    private void searchMyFavoriteShots() {
+        myListView = (ListView)findViewById(R.id.listResultados);
+        myListDataAdapter = new ListDataAdapter(getApplicationContext(),R.layout.fila_lista);
+        myListView.setAdapter(myListDataAdapter);
+
+        myShotsDB = new ShotsDB(getApplicationContext());
+        mySqlDB = myShotsDB.getReadableDatabase();
+
+        cursor = myShotsDB.getFavoritos(mySqlDB,usuarioIS.id+"");
+
+        if(cursor.moveToFirst()){
+            do{
+                String titulo, contenido, punteo;
+                titulo = cursor.getString(0);
+                contenido = cursor.getString(1);
+                punteo = cursor.getString(2);
+                DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
+                myListDataAdapter.add(myDataProvider);
+
+            }while(cursor.moveToNext());
+        }
+        else{
+            Toast.makeText(getBaseContext(), "No ha agregado Shots como favoritos", Toast.LENGTH_LONG).show();
+        }
+        myShotsDB.close();
+    }
 
 }
