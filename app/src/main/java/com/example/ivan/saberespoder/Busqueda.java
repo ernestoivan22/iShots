@@ -27,6 +27,8 @@ public class Busqueda extends ActionBarActivity {
     Cursor cursor;
     ListDataAdapter myListDataAdapter;
     Context context = this;
+    Usuario usuarioIS;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,28 +39,38 @@ public class Busqueda extends ActionBarActivity {
         ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton3);
         ImageView btnLogo = (ImageView) findViewById(R.id.imageView2);
 
+        usuarioIS = getIntent().getParcelableExtra("usuario");
         toProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
-                startActivity(new Intent(Busqueda.this,LoginActivity.class));
+                Intent i;
+                if (usuarioIS==null)
+                    i = new Intent(Busqueda.this,LoginActivity.class);
+                else{
+                    i = new Intent(Busqueda.this,ProfileActivity.class);
+                    i.putExtra("usuario", usuarioIS);
+                }
+                startActivity(i);
             }
         });
-
-
 
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Busqueda.this,Settings.class));
+                Intent i = new Intent(Busqueda.this,Settings.class);
+                if (usuarioIS!=null)
+                    i.putExtra("usuario", usuarioIS);
+                startActivity(i);
             }
         });
-
 
         btnLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Busqueda.this,PantallaPrincipal.class));
+                Intent i = new Intent(Busqueda.this,PantallaPrincipal.class);
+                if (usuarioIS!=null)
+                    i.putExtra("usuario", usuarioIS);
+                startActivity(i);
             }
         });
 

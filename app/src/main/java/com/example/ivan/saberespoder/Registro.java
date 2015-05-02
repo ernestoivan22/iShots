@@ -74,9 +74,10 @@ public class Registro extends ActionBarActivity {
                 shotsUser.close();
 
                 if (bandera) {
-                    Intent i = new Intent(Registro.this, PantallaPrincipal.class);
-                    i.putExtra("user",user);
+                    Intent i = new Intent(Registro.this, ProfileActivity.class);
+                    i.putExtra("usuario",user);
                     startActivity(i);
+                    finish();
                     Toast.makeText(getApplicationContext(),"Has creado tu usuario exitosamente!",Toast.LENGTH_LONG).show();
                 }
                 else

@@ -13,6 +13,8 @@ import android.widget.ImageView;
 
 public class Settings extends ActionBarActivity {
 
+    Usuario usuarioIS;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,36 +24,38 @@ public class Settings extends ActionBarActivity {
         ImageButton toProfile = (ImageButton) findViewById(R.id.profileButton);
         ImageButton btnSettings = (ImageButton) findViewById(R.id.btnSettings);
         ImageView btnLogo = (ImageView) findViewById(R.id.imageView);
-        Button btnAgregar = (Button) findViewById(R.id.add_Shot);
+        usuarioIS = getIntent().getParcelableExtra("usuario");
         toProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();m
-                startActivity(new Intent(Settings.this,LoginActivity.class));
+                Intent i;
+                if (usuarioIS==null)
+                    i = new Intent(Settings.this,LoginActivity.class);
+                else{
+                    i = new Intent(Settings.this,ProfileActivity.class);
+                    i.putExtra("usuario", usuarioIS);
+                }
+                startActivity(i);
             }
         });
-
-
 
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Settings.this,Settings.class));
+                Intent i = new Intent(Settings.this,Settings.class);
+                if (usuarioIS!=null)
+                    i.putExtra("usuario", usuarioIS);
+                startActivity(i);
             }
         });
-
 
         btnLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Settings.this,PantallaPrincipal.class));
-            }
-        });
-
-        btnAgregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Settings.this,AgregarShot.class));
+                Intent i = new Intent(Settings.this,PantallaPrincipal.class);
+                if (usuarioIS!=null)
+                    i.putExtra("usuario", usuarioIS);
+                startActivity(i);
             }
         });
 

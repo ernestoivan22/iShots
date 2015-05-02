@@ -64,19 +64,18 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        FacebookSdk.sdkInitialize(getApplicationContext());
-
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
+
+        usuarioIS = getIntent().getParcelableExtra("usuario");
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    //attemptLogin();
                     return true;
                 }
                 return false;
@@ -88,9 +87,12 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             @Override
             public void onClick(View view) {
                 usuarioIS = attemptLogin();
-                if (usuarioIS!=null)
-                    startActivity(new Intent(LoginActivity.this,PantallaPrincipal.class));
-                else
+                if (usuarioIS!=null) {
+                    Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
+                    i.putExtra("usuario",usuarioIS);
+                    startActivity(i);
+                    finish();
+                }else
                     Toast.makeText(getApplicationContext(),"Correo y/o contraseña incorrectos.",Toast.LENGTH_SHORT).show();
             }
         });
@@ -100,6 +102,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this,Registro.class));
+                finish();
             }
         });
 
@@ -107,7 +110,14 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         btnProfile.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,LoginActivity.class));
+                Intent i;
+                if (usuarioIS==null)
+                    i = new Intent(LoginActivity.this,LoginActivity.class);
+                else{
+                    i = new Intent(LoginActivity.this,ProfileActivity.class);
+                    i.putExtra("usuario", usuarioIS);
+                }
+                startActivity(i);
             }
         });
 
@@ -115,7 +125,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         btnSettings.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,Settings.class));
+                Intent i = new Intent(LoginActivity.this,Settings.class);
+                if (usuarioIS!=null)
+                    i.putExtra("usuario", usuarioIS);
+                startActivity(i);
             }
         });
 
@@ -123,7 +136,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         btnLogo.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,PantallaPrincipal.class));
+                Intent i = new Intent(LoginActivity.this,PantallaPrincipal.class);
+                if (usuarioIS!=null)
+                    i.putExtra("usuario", usuarioIS);
+                startActivity(i);
             }
         });
 

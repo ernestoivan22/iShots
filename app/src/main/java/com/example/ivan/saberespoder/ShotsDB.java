@@ -77,6 +77,27 @@ public class ShotsDB extends SQLiteOpenHelper {
 
     }
 
+    public Usuario getUsuarioIS(SQLiteDatabase db){
+        Cursor cursor;
+        String[] projections = {TableData.SesionActiva.id_user,
+                TableData.SesionActiva.username,
+                TableData.SesionActiva.enSesion};
+        String nombreUsuario;
+        cursor = db.query(TableData.SesionActiva.TABLE_NAME, projections, null, null, null, null, null);
+        int idUsuario,enSesion = 0;
+        Usuario user = null;
+        if(cursor.moveToFirst()) {
+            idUsuario = cursor.getInt(0);
+            nombreUsuario = cursor.getString(1);
+            enSesion = cursor.getInt(2);
+            user = new Usuario(idUsuario,nombreUsuario);
+        }
+        if (enSesion==1)
+            return user;
+        else
+            return null;
+    }
+
     public Usuario iniciarSesion(String correo, String password, SQLiteDatabase db){
 
         Cursor cursor;
@@ -94,7 +115,6 @@ public class ShotsDB extends SQLiteOpenHelper {
         if(cursor!=null){
             if(cursor.moveToFirst()){
                 do{
-
                     correoUsuario = cursor.getString(0);
                     passwordUsuario = cursor.getString(1);
                     nombreUsuario = cursor.getString(2);

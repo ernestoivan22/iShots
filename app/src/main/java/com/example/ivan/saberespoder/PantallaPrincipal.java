@@ -22,6 +22,8 @@ public class PantallaPrincipal extends ActionBarActivity{
     SQLiteDatabase sqLiteDatabase;
     Cursor cursor;
     ListDataAdapter myListDataAdapter;
+    Usuario usuarioIS;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,28 +32,38 @@ public class PantallaPrincipal extends ActionBarActivity{
         ImageButton toProfile = (ImageButton) findViewById(R.id.profileButton);
         ImageButton btnSettings = (ImageButton) findViewById(R.id.btnSettings);
         ImageView btnLogo = (ImageView) findViewById(R.id.imageView);
+        usuarioIS = getIntent().getParcelableExtra("usuario");
         toProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
-                startActivity(new Intent(PantallaPrincipal.this,LoginActivity.class));
+                Intent i;
+                if (usuarioIS==null)
+                    i = new Intent(PantallaPrincipal.this,LoginActivity.class);
+                else{
+                    i = new Intent(PantallaPrincipal.this,ProfileActivity.class);
+                    i.putExtra("usuario", usuarioIS);
+                }
+                startActivity(i);
             }
         });
-
-
 
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PantallaPrincipal.this,Settings.class));
+                Intent i = new Intent(PantallaPrincipal.this,Settings.class);
+                if (usuarioIS!=null)
+                    i.putExtra("usuario", usuarioIS);
+                startActivity(i);
             }
         });
-
 
         btnLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PantallaPrincipal.this,PantallaPrincipal.class));
+                Intent i = new Intent(PantallaPrincipal.this,PantallaPrincipal.class);
+                if (usuarioIS!=null)
+                    i.putExtra("usuario", usuarioIS);
+                startActivity(i);
             }
         });
 
@@ -67,12 +79,7 @@ public class PantallaPrincipal extends ActionBarActivity{
         myListDataAdapter = new ListDataAdapter(getApplicationContext(),R.layout.fila_lista);
         listView.setAdapter(myListDataAdapter);
         myShotsDB = new ShotsDB(getApplicationContext());
-
-
         sqLiteDatabase = myShotsDB.getReadableDatabase();
-
-
-
         cursor = myShotsDB.getShotInfo(sqLiteDatabase);
         if(cursor!=null){
             if(cursor.moveToFirst()){
@@ -83,15 +90,12 @@ public class PantallaPrincipal extends ActionBarActivity{
                     punteo = cursor.getString(2);
                     DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
                     myListDataAdapter.add(myDataProvider);
-
                 }while(cursor.moveToNext());
             }
-
         }
-
-
-
-
+        if (usuarioIS==null)
+            usuarioIS = myShotsDB.getUsuarioIS(sqLiteDatabase);
+        sqLiteDatabase.close();
     }
 
     @Override

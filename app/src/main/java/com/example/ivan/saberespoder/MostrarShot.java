@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +30,54 @@ public class MostrarShot extends ActionBarActivity {
     String[] contenidosList;
     ImageButton speech;
     TTSManager ttsManager;
+    Usuario usuarioIS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_shot);
         getSupportActionBar().hide();
+
+        ImageButton toProfile = (ImageButton) findViewById(R.id.imageButton6);
+        ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton7);
+        ImageView btnLogo = (ImageView) findViewById(R.id.imageView4);
+        usuarioIS = getIntent().getParcelableExtra("usuario");
+        toProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i;
+                if (usuarioIS == null)
+                    i = new Intent(MostrarShot.this, LoginActivity.class);
+                else {
+                    i = new Intent(MostrarShot.this, ProfileActivity.class);
+                    i.putExtra("usuario", usuarioIS);
+                }
+                startActivity(i);
+                finish();
+            }
+        });
+
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MostrarShot.this, Settings.class);
+                if (usuarioIS != null)
+                    i.putExtra("usuario", usuarioIS);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        btnLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MostrarShot.this, PantallaPrincipal.class);
+                if (usuarioIS != null)
+                    i.putExtra("usuario", usuarioIS);
+                startActivity(i);
+                finish();
+            }
+        });
 
         //----------------------------Cargar elementos----------------------------
         Intent intent = getIntent();
