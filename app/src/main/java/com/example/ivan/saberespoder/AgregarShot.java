@@ -96,12 +96,19 @@ public class AgregarShot extends ActionBarActivity {
     }
 
     public void addShot(View view){
-        String titulo = ShotTitle.getText().toString();
-        String contenido = ShotContent.getText().toString();
-        myShotsDB =  new ShotsDB(context);
-        sqLiteDatabase = myShotsDB.getWritableDatabase();
-        myShotsDB.addShotInfo(titulo,contenido,0,null,sqLiteDatabase);
-        Toast.makeText(getBaseContext(),"Shot guardado", Toast.LENGTH_LONG).show();
-        myShotsDB.close();
+        if(ShotTitle.getText().toString().equals("")||ShotContent.getText().toString().equals("")){
+            Toast.makeText(getBaseContext(),"Ambos campos deben llenarse.", Toast.LENGTH_LONG).show();
+        }
+        else{
+            String titulo = ShotTitle.getText().toString();
+            String contenido = ShotContent.getText().toString();
+            myShotsDB =  new ShotsDB(context);
+            sqLiteDatabase = myShotsDB.getWritableDatabase();
+            myShotsDB.addShotInfo(titulo,contenido,0,null,sqLiteDatabase);
+            Toast.makeText(getBaseContext(),"Shot guardado", Toast.LENGTH_LONG).show();
+            ShotTitle.setText("");
+            ShotContent.setText("");
+            myShotsDB.close();
+        }
     }
 }

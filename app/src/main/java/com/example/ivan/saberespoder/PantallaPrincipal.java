@@ -1,6 +1,7 @@
 package com.example.ivan.saberespoder;
 
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,6 +25,8 @@ public class PantallaPrincipal extends ActionBarActivity{
     Cursor cursor;
     ListDataAdapter myListDataAdapter;
     Usuario usuarioIS;
+    ListView myListView;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +100,35 @@ public class PantallaPrincipal extends ActionBarActivity{
         if (usuarioIS==null)
             usuarioIS = myShotsDB.getUsuarioIS(sqLiteDatabase);
         sqLiteDatabase.close();
+
+        //Detectar taps
+        myListView = (ListView)findViewById(R.id.shots_recientes);
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                String tituloObt = ((DataProvider)parent.getItemAtPosition(position)).getTitle();
+                String contenidoObt = ((DataProvider)parent.getItemAtPosition(position)).getTitle();
+                Intent intent = new Intent(context,MostrarShot.class);
+                String[] listaTitulos = new String[parent.getCount()];
+                String[] listaContenidos = new String[parent.getCount()];
+
+                for(int i=0; i<parent.getCount();i++){
+                    listaTitulos[i] = ((DataProvider)parent.getItemAtPosition(i)).getTitle();
+                }
+                for(int i=0; i<parent.getCount();i++){
+                    listaContenidos[i] = ((DataProvider)parent.getItemAtPosition(i)).getContent();
+                }
+                //Toast.makeText(getBaseContext(), listaContenidos[position], Toast.LENGTH_LONG).show();
+                intent.putExtra("listaTitulos",listaTitulos);
+                intent.putExtra("listaContenidos", listaContenidos);
+                intent.putExtra("positionShot", position);
+                startActivity(intent);
+
+            }
+
+        });
+
     }
 
     @Override
