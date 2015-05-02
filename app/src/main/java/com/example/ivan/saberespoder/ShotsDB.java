@@ -150,7 +150,7 @@ public class ShotsDB extends SQLiteOpenHelper {
         Cursor cursor;
         Cursor cursor2;
         String argumentos = "";
-
+        String argumentosFinal = "";
         //------------------------Obtener los ids de los shots------------------------------
         String[] projections = {TableData.shotsFavoritos.ID_SHOT};
 
@@ -165,8 +165,8 @@ public class ShotsDB extends SQLiteOpenHelper {
                 argumentos += shot+", ";
 
             }while(cursor.moveToNext());
-            argumentos = argumentos.substring(0, argumentos.length()-4);
-            Log.e("RESULTADO IDS", argumentos);
+            argumentosFinal = argumentos.substring(0, (argumentos.length()-2));
+            Log.e("RESULTADO IDS", argumentosFinal);
 
         }
         else{
@@ -176,7 +176,7 @@ public class ShotsDB extends SQLiteOpenHelper {
         //----------------------------------Obtener los shots--------------------------------------
         String[] projections2 = {TableData.ShotInfo.TITULO, TableData.ShotInfo.CONTENIDO,
                 TableData.ShotInfo.PUNTEO};
-        String selection2 = user_id+" in("+argumentos+")";
+        String selection2 = TableData.ShotInfo.ID_SHOT+" in("+argumentosFinal+")";
 
         cursor2 = db.query(TableData.ShotInfo.TABLE_NAME, projections2, selection2, null, null, null, null);
         return cursor2;
