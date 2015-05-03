@@ -22,6 +22,7 @@ public class ShotsDB extends SQLiteOpenHelper {
     private static final String CREATE_QUERRY4 = "CREATE TABLE "+TableData.UserInfo.TABLE_NAME+" ("+TableData.UserInfo.ID_USUARIO+" INTEGER PRIMARY KEY, "+TableData.UserInfo.NOMBRE_USUARIO+" TEXT, "+TableData.UserInfo.CORREO+" TEXT, "+ TableData.UserInfo.PASS_USUARIO+" TEXT);";
     private static final String CREATE_QUERRY5 = "CREATE TABLE "+TableData.SesionActiva.TABLE_NAME+" ("+TableData.SesionActiva.id+" INT, "+TableData.SesionActiva.id_user+" INT, "+TableData.SesionActiva.username+" TEXT, "+ TableData.SesionActiva.enSesion+" INT);";
     private static final String CREATE_QUERRY6 = "CREATE TABLE "+TableData.shotsFavoritos.TABLE_NAME+" ("+TableData.shotsFavoritos.ID_SHOT+" INT, "+TableData.shotsFavoritos.ID_USUARIO+" INT);";
+    private static final String CREATE_QUERRY7 = "CREATE TABLE "+TableData.shotsPunteos.TABLE_NAME+" ("+TableData.shotsPunteos.ID_SHOT+" INT, "+TableData.shotsPunteos.ID_USUARIO+" INT, "+TableData.shotsPunteos.PUNTEO_SHOT+" INT);";
 
     public ShotsDB(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -35,6 +36,7 @@ public class ShotsDB extends SQLiteOpenHelper {
         db.execSQL(CREATE_QUERRY4);
         db.execSQL(CREATE_QUERRY5);
         db.execSQL(CREATE_QUERRY6);
+        db.execSQL(CREATE_QUERRY7);
         Log.e("DATABASE OPERATIONS", "Tables Created...");
     }
 
@@ -62,6 +64,58 @@ public class ShotsDB extends SQLiteOpenHelper {
         String selection = TableData.shotsFavoritos.ID_SHOT +" = ? AND "+TableData.shotsFavoritos.ID_USUARIO+" = ?";
         String[] selection_args = {shotId, userId};
         db.delete(TableData.shotsFavoritos.TABLE_NAME,selection,selection_args);
+    }
+
+    public void addShotPunteo(String userId, String tituloShot, String contenidoShot, String punteo, SQLiteDatabase db){
+        String shotId = getId_Shot(db, tituloShot,contenidoShot);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TableData.shotsPunteos.ID_SHOT, shotId);
+        contentValues.put(TableData.shotsPunteos.ID_USUARIO, userId);
+        contentValues.put(TableData.shotsPunteos.PUNTEO_SHOT, punteo);
+        db.insert(TableData.shotsPunteos.TABLE_NAME, null, contentValues);
+        Log.e("DATABASE OPERATIONS", "One row inserted in. SHOTS_PUNTEOS");
+    }
+
+    public void upDateShotPunteo(String userId, String tituloShot, String contenidoShot, String punteo, SQLiteDatabase db){
+        String shotId = getId_Shot(db, tituloShot,contenidoShot);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TableData.shotsPunteos.PUNTEO_SHOT, punteo);
+        String selection = TableData.shotsPunteos.ID_SHOT+" = ? AND "+TableData.shotsPunteos.ID_USUARIO+" = ?";
+        String[] selection_args = {shotId, userId};
+        db.update(TableData.shotsPunteos.TABLE_NAME, contentValues,selection,selection_args);
+    }
+
+    public void controlShotPunteo(String userId, String tituloShot, String contenidoShot, String punteo, SQLiteDatabase db){
+        String shotId = getId_Shot(db, tituloShot,contenidoShot);
+        String[] projections = {TableData.shotsPunteos.PUNTEO_SHOT};
+        String selection = TableData.shotsPunteos.ID_SHOT+" = ? AND "+TableData.shotsPunteos.ID_USUARIO+" = ?";
+        String[] selection_args = {shotId, userId};
+        Cursor cursor = db.query(TableData.shotsPunteos.TABLE_NAME,projections,selection,selection_args,null,null,null);
+        if(cursor.moveToFirst()){
+            upDateShotPunteo(userId,tituloShot, contenidoShot, punteo, db);
+        }
+        else{
+            addShotPunteo(userId, tituloShot, contenidoShot, punteo, db);
+        }
+    }
+
+    public float obtenerShotPunteoPromedio(String tituloShot, String contenidoShot, SQLiteDatabase db){
+        String shotId = getId_Shot(db, tituloShot,contenidoShot);
+        Cursor cursor;
+        String[] projections = {"AVG("+TableData.shotsPunteos.PUNTEO_SHOT+")"};
+        String selection = TableData.shotsPunteos.ID_SHOT +" = ? ";
+        String[] selection_args = {shotId};
+
+        cursor = db.query(TableData.shotsPunteos.TABLE_NAME, projections, selection, selection_args, null, null, null);
+        if(cursor.moveToFirst()){
+            float promedio;
+            promedio = cursor.getFloat(0);
+            return promedio;
+        }
+        else{
+            return 0;
+        }
+
     }
 
     public Cursor getMyShots(SQLiteDatabase db, Usuario user){

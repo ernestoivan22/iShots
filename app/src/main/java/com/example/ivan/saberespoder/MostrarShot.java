@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,8 @@ public class MostrarShot extends ActionBarActivity {
     TTSManager ttsManager;
     Usuario usuarioIS;
     ImageButton favorite;
+    RatingBar rating;
+    boolean bandera = false;
 
     SQLiteDatabase mySqlDB;
     ShotsDB myShotsDB;
@@ -105,8 +108,10 @@ public class MostrarShot extends ActionBarActivity {
         //-----------------------------Desabilitar like--------------------
         if(usuarioIS==null){
             ((ImageButton)findViewById(R.id.btn_like_mostrar)).setVisibility(Button.INVISIBLE);
+            ((RatingBar)findViewById(R.id.ratingBar)).setClickable(false);
         }
         else{
+            ((RatingBar)findViewById(R.id.ratingBar)).setClickable(true);
             ((ImageButton)findViewById(R.id.btn_like_mostrar)).setVisibility(Button.VISIBLE);
             myShotsDB = new ShotsDB(getApplicationContext());
             mySqlDB = myShotsDB.getReadableDatabase();
@@ -146,6 +151,9 @@ public class MostrarShot extends ActionBarActivity {
                         favorite.setImageResource(R.drawable.like);
                     }
                 }
+                rating = (RatingBar)findViewById(R.id.ratingBar);
+                float punteoProm = myShotsDB.obtenerShotPunteoPromedio(titulosList[posicionShot],contenidosList[posicionShot],mySqlDB);
+                rating.setRating(punteoProm);
             }
             @Override
             public void onSwipeRight() {
@@ -169,7 +177,9 @@ public class MostrarShot extends ActionBarActivity {
                         favorite.setImageResource(R.drawable.like);
                     }
                 }
-
+                rating = (RatingBar)findViewById(R.id.ratingBar);
+                float punteoProm = myShotsDB.obtenerShotPunteoPromedio(titulosList[posicionShot],contenidosList[posicionShot],mySqlDB);
+                rating.setRating(punteoProm);
             }
         });
         favorite = (ImageButton)findViewById(R.id.btn_like_mostrar);
@@ -206,6 +216,32 @@ public class MostrarShot extends ActionBarActivity {
                 }
             }
         });
+
+        //---------------------------------------cargar Rating promedio ---------------------------------
+        myShotsDB = new ShotsDB(getApplicationContext());
+        mySqlDB = myShotsDB.getReadableDatabase();
+
+        rating = (RatingBar)findViewById(R.id.ratingBar);
+        float punteoProm = myShotsDB.obtenerShotPunteoPromedio(titulosList[posicionShot],contenidosList[posicionShot],mySqlDB);
+        rating.setRating(punteoProm);
+        bandera = false;
+        //------------------------------------------crearOnClickListener--------------------------------------
+        rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating2, boolean fromUser) {
+                if(bandera == false){
+                    bandera = true;
+                    myShotsDB.controlShotPunteo(usuarioIS.id+"",titulosList[posicionShot],contenidosList[posicionShot],rating2+"",mySqlDB);
+
+                    rating = (RatingBar)findViewById(R.id.ratingBar);
+                    Log.e("PUNTEO", rating2+"");
+                    float punteoProm = myShotsDB.obtenerShotPunteoPromedio(titulosList[posicionShot],contenidosList[posicionShot],mySqlDB);
+                    rating.setRating(punteoProm);
+                }
+                bandera = false;
+            }
+        });
+
 
     }
 

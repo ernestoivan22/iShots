@@ -73,10 +73,19 @@
             android:id="@+id/titulo_Shot_mostrar"
             android:textSize="@dimen/abc_text_size_display_1_material" />
 
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:numStars="5"
+            android:layout_gravity="right"
+            android:nestedScrollingEnabled="false" />
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <EditText
                 android:layout_width="fill_parent"
@@ -93,14 +102,13 @@
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="5"
+                android:layout_weight="3"
                 android:paddingTop="10dp">
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="5"
                     android:textAlignment="center"
                     android:background="#ff3e4952">
 

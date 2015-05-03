@@ -53,4 +53,11 @@ public class TableData {
         public static String ID_SHOT = "Id_Shot";
         public static final String TABLE_NAME = "SHOTS_FAVORITOS";
     }
+
+    public static abstract class shotsPunteos implements BaseColumns{
+        public static String ID_USUARIO = "Id_Usuario";
+        public static String ID_SHOT = "Id_Shot";
+        public static String PUNTEO_SHOT = "Punteo_Shot";
+        public static final String TABLE_NAME = "SHOTS_PUNTEOS";
+    }
 }
