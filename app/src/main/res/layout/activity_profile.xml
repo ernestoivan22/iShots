@@ -5,7 +5,7 @@
     android:paddingTop="0dp"
     android:orientation="vertical"
     android:paddingBottom="0dp" tools:context=".PantallaPrincipal"
-    android:background="#ff5e9be3">
+    android:background="#00000000">
 
 <LinearLayout
         android:orientation="vertical"
@@ -29,7 +29,7 @@
             android:paddingRight="5dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:background="#ffa3bfd9" >
+            android:background="#00000000" >
 
             <LinearLayout
                 android:orientation="horizontal"

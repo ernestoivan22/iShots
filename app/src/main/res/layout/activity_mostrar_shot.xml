@@ -5,7 +5,7 @@
     android:paddingTop="0dp"
     android:orientation="vertical"
     android:paddingBottom="0dp" tools:context=".MostrarShot"
-    android:background="#ff5e9be3">
+    android:background="@drawable/fondo3">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -20,7 +20,7 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:background="#ffa3bfd9" >
+        android:background="#00000000" >
 
         <LinearLayout
             android:orientation="horizontal"
@@ -94,9 +94,10 @@
                 android:ems="10"
                 android:id="@+id/contenido_Shot_mostrar"
                 android:layout_weight="1"
-                android:background="#ff5e9be3"
+                android:background="@drawable/text_outline"
                 android:longClickable="false"
-                android:gravity="top" />
+                android:gravity="top"
+                android:padding="20dp" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -110,14 +111,14 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:textAlignment="center"
-                    android:background="#ff3e4952">
+                    android:background="#00000000">
 
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/btn_speech"
                         android:src="@drawable/speaker"
-                        android:background="#00000000"
+                        android:background="@android:drawable/bottom_bar"
                         android:layout_gravity="center"
                         android:layout_weight="1" />
 
@@ -126,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/btn_like_mostrar"
                         android:src="@drawable/likeoutline"
-                        android:background="#00000000"
+                        android:background="@android:drawable/bottom_bar"
                         android:layout_gravity="center"
                         android:layout_weight="1" />
 
@@ -135,7 +136,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/btn_share"
                         android:src="@drawable/share"
-                        android:background="#00000000"
+                        android:background="@android:drawable/bottom_bar"
                         android:layout_gravity="center"
                         android:layout_weight="1" />
                 </LinearLayout>
