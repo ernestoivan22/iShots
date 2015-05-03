@@ -28,7 +28,7 @@ public class AboutActivity extends ActionBarActivity {
                 imagen.setImageResource(R.drawable.reconocer_voz);
                 break;
             case 2:
-
+                imagen.setImageResource(R.drawable.escuchar_shot);
                 break;
         }
     }
