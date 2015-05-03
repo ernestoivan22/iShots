@@ -25,7 +25,7 @@ public class HelpActivity extends ActionBarActivity {
 
         usuarioIS = getIntent().getParcelableExtra("usuario");
         ListView listView1 = (ListView) findViewById(R.id.listView3);
-        String[] opciones  = {"Acerca de","¿Cómo buscar shots usando la voz?","¿Cómo reproducir los shots?"};
+        String[] opciones  = {"Acerca de", "\u00bfC\u00f3mo buscar shots usando la voz?", "\u00bfC\u00f3mo reproducir los shots?"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, opciones);
