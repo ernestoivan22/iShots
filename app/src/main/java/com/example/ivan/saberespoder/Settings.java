@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 
 public class Settings extends ActionBarActivity {
@@ -20,6 +23,29 @@ public class Settings extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         getSupportActionBar().hide();
+
+        ListView listView1 = (ListView) findViewById(R.id.listView2);
+        String[] opciones  = {"Ayuda"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, opciones);
+        listView1.setAdapter(adapter);
+
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                switch (position) {
+                    case 0://Ayuda
+                        Intent i = new Intent(Settings.this, HelpActivity.class);
+                        if (usuarioIS != null)
+                            i.putExtra("usuario", usuarioIS);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
+                        break;
+                }
+            }
+        });
 
         ImageButton toProfile = (ImageButton) findViewById(R.id.profileButton);
         ImageButton btnSettings = (ImageButton) findViewById(R.id.btnSettings);

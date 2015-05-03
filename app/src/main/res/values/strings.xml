@@ -14,4 +14,6 @@
     <string name="facebook_app_id">667588360040579</string>
     <string name="title_activity_agregar_shot">AgregarShot</string>
     <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_help">HelpActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
 </resources>
