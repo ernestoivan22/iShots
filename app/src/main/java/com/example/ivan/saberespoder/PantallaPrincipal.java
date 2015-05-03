@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +50,7 @@ public class PantallaPrincipal extends ActionBarActivity{
                     i = new Intent(PantallaPrincipal.this,LoginActivity.class);
                 else{
                     i = new Intent(PantallaPrincipal.this,ProfileActivity.class);
+                    i.putExtra("usuario", usuarioIS);
                 }
                 startActivity(i);
             }
@@ -58,6 +60,8 @@ public class PantallaPrincipal extends ActionBarActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(PantallaPrincipal.this,Settings.class);
+                if (usuarioIS!=null)
+                    i.putExtra("usuario",usuarioIS);
                 startActivity(i);
             }
         });
@@ -66,6 +70,8 @@ public class PantallaPrincipal extends ActionBarActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(PantallaPrincipal.this,PantallaPrincipal.class);
+                if (usuarioIS!=null)
+                    i.putExtra("usuario",usuarioIS);
                 startActivity(i);
             }
         });
@@ -124,6 +130,8 @@ public class PantallaPrincipal extends ActionBarActivity{
                 intent.putExtra("listaTitulos",listaTitulos);
                 intent.putExtra("listaContenidos", listaContenidos);
                 intent.putExtra("positionShot", position);
+                if (usuarioIS!=null)
+                    intent.putExtra("usuario",usuarioIS);
                 startActivity(intent);
             }
 
@@ -155,8 +163,10 @@ public class PantallaPrincipal extends ActionBarActivity{
 
     @Override
     public void startActivity(Intent intent) {
-        if (usuarioIS!=null)
+        boolean bandera = Intent.ACTION_SEARCH.equals(intent.getAction()) || RecognizerIntent.ACTION_RECOGNIZE_SPEECH.equals(intent.getAction());
+        if (bandera) {
             intent.putExtra("usuario", usuarioIS);
+        }
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         super.startActivity(intent);
     }

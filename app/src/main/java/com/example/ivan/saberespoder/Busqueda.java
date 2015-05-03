@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -79,7 +80,7 @@ public class Busqueda extends ActionBarActivity {
 
         // Get the intent, verify the action and get the query abc
         Intent intent = getIntent();
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction()) || RecognizerIntent.ACTION_RECOGNIZE_SPEECH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             doMySearch(query);
         }
@@ -162,7 +163,7 @@ public class Busqueda extends ActionBarActivity {
         myShotsDB = new ShotsDB(getApplicationContext());
         mySqlDB = myShotsDB.getReadableDatabase();
 
-        cursor = myShotsDB.getMyShots(mySqlDB,usuarioIS);
+        cursor = myShotsDB.getMyShots(mySqlDB, usuarioIS);
 
         if(cursor.moveToFirst()){
             do{
@@ -189,7 +190,7 @@ public class Busqueda extends ActionBarActivity {
         myShotsDB = new ShotsDB(getApplicationContext());
         mySqlDB = myShotsDB.getReadableDatabase();
 
-        cursor = myShotsDB.getFavoritos(mySqlDB,usuarioIS.id+"");
+        cursor = myShotsDB.getFavoritos(mySqlDB, usuarioIS.id + "");
 
         if(cursor.moveToFirst()){
             do{
