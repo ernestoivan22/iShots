@@ -209,9 +209,4 @@ public class Busqueda extends ActionBarActivity {
         }
         myShotsDB.close();
     }
-
-    public void onBackPressed()
-    {
-
-    }
 }
