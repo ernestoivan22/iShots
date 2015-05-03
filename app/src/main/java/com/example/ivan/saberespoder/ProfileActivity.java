@@ -27,7 +27,7 @@ public class ProfileActivity extends ActionBarActivity {
         setContentView(R.layout.activity_profile);
         getSupportActionBar().hide();
         ListView listView1 = (ListView) findViewById(R.id.listView);
-        String[] opciones  = {"Crear shot","Mis shots","Calificar shots","Mis favoritos","Cerrar sesión"};
+        String[] opciones  = {"Crear shot","Mis shots","Mis favoritos","Cerrar sesión"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, opciones);
@@ -96,9 +96,7 @@ public class ProfileActivity extends ActionBarActivity {
                         ii.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(ii);
                         break;
-                    case 2://Calificar shots
-                        break;
-                    case 3://Mis favoritos
+                    case 2://Mis favoritos
                         Intent iiii = new Intent(ProfileActivity.this,Busqueda.class);
                         if (usuarioIS!=null)
                             iiii.putExtra("usuario", usuarioIS);
@@ -106,7 +104,7 @@ public class ProfileActivity extends ActionBarActivity {
                         iiii.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(iiii);
                         break;
-                    case 4://Cerrar sesion
+                    case 3://Cerrar sesion
                         ShotsDB myShotsDB = new ShotsDB(getApplicationContext());
                         mySQLiteDB = myShotsDB.getWritableDatabase();
                         myShotsDB.cerrarSesion(mySQLiteDB, usuarioIS);

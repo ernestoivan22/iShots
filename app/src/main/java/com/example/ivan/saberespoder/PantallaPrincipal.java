@@ -49,7 +49,6 @@ public class PantallaPrincipal extends ActionBarActivity{
                     i = new Intent(PantallaPrincipal.this,LoginActivity.class);
                 else{
                     i = new Intent(PantallaPrincipal.this,ProfileActivity.class);
-                    i.putExtra("usuario", usuarioIS);
                 }
                 startActivity(i);
             }
@@ -59,8 +58,6 @@ public class PantallaPrincipal extends ActionBarActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(PantallaPrincipal.this,Settings.class);
-                if (usuarioIS!=null)
-                    i.putExtra("usuario", usuarioIS);
                 startActivity(i);
             }
         });
@@ -69,8 +66,6 @@ public class PantallaPrincipal extends ActionBarActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(PantallaPrincipal.this,PantallaPrincipal.class);
-                if (usuarioIS!=null)
-                    i.putExtra("usuario", usuarioIS);
                 startActivity(i);
             }
         });
@@ -129,10 +124,7 @@ public class PantallaPrincipal extends ActionBarActivity{
                 intent.putExtra("listaTitulos",listaTitulos);
                 intent.putExtra("listaContenidos", listaContenidos);
                 intent.putExtra("positionShot", position);
-                if (usuarioIS!=null)
-                    intent.putExtra("usuario", usuarioIS);
                 startActivity(intent);
-
             }
 
         });
@@ -163,10 +155,8 @@ public class PantallaPrincipal extends ActionBarActivity{
 
     @Override
     public void startActivity(Intent intent) {
-        // check if search intent
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+        if (usuarioIS!=null)
             intent.putExtra("usuario", usuarioIS);
-        }
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         super.startActivity(intent);
     }
