@@ -35,15 +35,13 @@ public class HelpActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                switch (position) {
-                    case 0://AcercaDe
-                        Intent i = new Intent(HelpActivity.this, AboutActivity.class);
-                        if (usuarioIS != null)
-                            i.putExtra("usuario", usuarioIS);
-                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(i);
-                        break;
-                }
+                Intent i = new Intent(HelpActivity.this, AboutActivity.class);
+                if (usuarioIS != null)
+                    i.putExtra("usuario", usuarioIS);
+                i.putExtra("opcion",position);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+
             }
         });
 

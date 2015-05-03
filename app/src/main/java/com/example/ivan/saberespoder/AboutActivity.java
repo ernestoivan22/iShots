@@ -1,9 +1,11 @@
 package com.example.ivan.saberespoder;
 
+import android.media.Image;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 
 public class AboutActivity extends ActionBarActivity {
@@ -15,7 +17,18 @@ public class AboutActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         getSupportActionBar().hide();
+        ImageView imagen = (ImageView) findViewById(R.id.imageView6);
         usuarioIS = getIntent().getParcelableExtra("usuario");
+        int opcion =  getIntent().getIntExtra("opcion",-1);
+        switch(opcion){
+            case 0:
+                imagen.setImageResource(R.drawable.logopeq);
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+        }
     }
 
     @Override
