@@ -163,15 +163,12 @@ public class PantallaPrincipal extends ActionBarActivity{
 
     @Override
     public void startActivity(Intent intent) {
-        boolean bandera = Intent.ACTION_SEARCH.equals(intent.getAction()) || RecognizerIntent.ACTION_RECOGNIZE_SPEECH.equals(intent.getAction());
+        boolean bandera = Intent.ACTION_SEARCH.equals(intent.getAction());
         if (bandera) {
             intent.putExtra("usuario", usuarioIS);
         }
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        if (!RecognizerIntent.ACTION_RECOGNIZE_SPEECH.equals(intent.getAction()))
-            super.startActivity(intent);
-        else
-            startActivityForResult(intent,1);
+        super.startActivity(intent);
     }
 
 

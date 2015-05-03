@@ -41,6 +41,11 @@ public class Busqueda extends ActionBarActivity {
         ImageView btnLogo = (ImageView) findViewById(R.id.imageView2);
 
         usuarioIS = getIntent().getParcelableExtra("usuario");
+        myShotsDB = new ShotsDB(getApplicationContext());
+        mySqlDB = myShotsDB.getReadableDatabase();
+        if (usuarioIS==null)
+            usuarioIS = myShotsDB.getUsuarioIS(mySqlDB);
+        mySqlDB.close();
         toProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,23 +105,23 @@ public class Busqueda extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                String tituloObt = ((DataProvider)parent.getItemAtPosition(position)).getTitle();
-                String contenidoObt = ((DataProvider)parent.getItemAtPosition(position)).getTitle();
-                Intent intent = new Intent(context,MostrarShot.class);
+                String tituloObt = ((DataProvider) parent.getItemAtPosition(position)).getTitle();
+                String contenidoObt = ((DataProvider) parent.getItemAtPosition(position)).getTitle();
+                Intent intent = new Intent(context, MostrarShot.class);
                 String[] listaTitulos = new String[parent.getCount()];
                 String[] listaContenidos = new String[parent.getCount()];
 
-                for(int i=0; i<parent.getCount();i++){
-                    listaTitulos[i] = ((DataProvider)parent.getItemAtPosition(i)).getTitle();
+                for (int i = 0; i < parent.getCount(); i++) {
+                    listaTitulos[i] = ((DataProvider) parent.getItemAtPosition(i)).getTitle();
                 }
-                for(int i=0; i<parent.getCount();i++){
-                    listaContenidos[i] = ((DataProvider)parent.getItemAtPosition(i)).getContent();
+                for (int i = 0; i < parent.getCount(); i++) {
+                    listaContenidos[i] = ((DataProvider) parent.getItemAtPosition(i)).getContent();
                 }
                 //Toast.makeText(getBaseContext(), listaContenidos[position], Toast.LENGTH_LONG).show();
-                intent.putExtra("listaTitulos",listaTitulos);
+                intent.putExtra("listaTitulos", listaTitulos);
                 intent.putExtra("listaContenidos", listaContenidos);
                 intent.putExtra("positionShot", position);
-                if (usuarioIS!=null)
+                if (usuarioIS != null)
                     intent.putExtra("usuario", usuarioIS);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
