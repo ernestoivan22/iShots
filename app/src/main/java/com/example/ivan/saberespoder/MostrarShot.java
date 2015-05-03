@@ -108,10 +108,10 @@ public class MostrarShot extends ActionBarActivity {
         //-----------------------------Desabilitar like--------------------
         if(usuarioIS==null){
             ((ImageButton)findViewById(R.id.btn_like_mostrar)).setVisibility(Button.INVISIBLE);
-            ((RatingBar)findViewById(R.id.ratingBar)).setClickable(false);
+            ((RatingBar)findViewById(R.id.ratingBar)).setIsIndicator(true);
         }
         else{
-            ((RatingBar)findViewById(R.id.ratingBar)).setClickable(true);
+            ((RatingBar)findViewById(R.id.ratingBar)).setClickable(false);
             ((ImageButton)findViewById(R.id.btn_like_mostrar)).setVisibility(Button.VISIBLE);
             myShotsDB = new ShotsDB(getApplicationContext());
             mySqlDB = myShotsDB.getReadableDatabase();
