@@ -7,9 +7,9 @@ public class DataProvider {
     //holi
     private String title;
     private String content;
-    private String rating;
+    private float rating;
 
-    public DataProvider(String title, String content, String rating){
+    public DataProvider(String title, String content, float rating){
         this.title = title;
         this.content = content;
         this.rating = rating;
@@ -31,11 +31,11 @@ public class DataProvider {
         this.content = content;
     }
 
-    public String getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 }

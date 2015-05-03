@@ -24,16 +24,16 @@
                 android:layout_weight="1"
                 android:textColor="#ff000000"
                 android:textStyle="bold" />
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/formato_fila_punteo"
-                android:text="Punteo"
-                android:layout_weight="5"
-                android:textColor="#ff000000" />
 
-            </LinearLayout>
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar2"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="fill_parent"

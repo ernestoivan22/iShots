@@ -138,10 +138,11 @@ public class Busqueda extends ActionBarActivity {
 
         if(cursor.moveToFirst()){
             do{
-                String titulo, contenido, punteo;
+                String titulo, contenido;
+                float punteo;
                 titulo = cursor.getString(0);
                 contenido = cursor.getString(1);
-                punteo = cursor.getString(2);
+                punteo = cursor.getFloat(2);
                 DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
                 myListDataAdapter.add(myDataProvider);
 
@@ -165,10 +166,11 @@ public class Busqueda extends ActionBarActivity {
 
         if(cursor.moveToFirst()){
             do{
-                String titulo, contenido, punteo;
+                String titulo, contenido;
+                float punteo;
                 titulo = cursor.getString(0);
                 contenido = cursor.getString(1);
-                punteo = cursor.getString(2);
+                punteo = cursor.getFloat(2);
                 DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
                 myListDataAdapter.add(myDataProvider);
             }while(cursor.moveToNext());
@@ -191,10 +193,11 @@ public class Busqueda extends ActionBarActivity {
 
         if(cursor.moveToFirst()){
             do{
-                String titulo, contenido, punteo;
+                String titulo, contenido;
+                float punteo;
                 titulo = cursor.getString(0);
                 contenido = cursor.getString(1);
-                punteo = cursor.getString(2);
+                punteo = cursor.getFloat(2);
                 DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
                 myListDataAdapter.add(myDataProvider);
 

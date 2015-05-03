@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 
 
 public class PantallaPrincipal extends ActionBarActivity{
@@ -88,10 +92,11 @@ public class PantallaPrincipal extends ActionBarActivity{
         if(cursor!=null){
             if(cursor.moveToFirst()){
                 do{
-                    String titulo, contenido, punteo;
+                    String titulo, contenido;
+                    float punteo;
                     titulo = cursor.getString(0);
                     contenido = cursor.getString(1);
-                    punteo = cursor.getString(2);
+                    punteo = cursor.getFloat(2);
                     DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
                     myListDataAdapter.add(myDataProvider);
                 }while(cursor.moveToNext());
@@ -100,6 +105,7 @@ public class PantallaPrincipal extends ActionBarActivity{
         if (usuarioIS==null)
             usuarioIS = myShotsDB.getUsuarioIS(sqLiteDatabase);
         sqLiteDatabase.close();
+
 
         //Detectar taps
         myListView = (ListView)findViewById(R.id.shots_recientes);

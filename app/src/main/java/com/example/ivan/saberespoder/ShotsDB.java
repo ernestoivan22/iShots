@@ -110,6 +110,15 @@ public class ShotsDB extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             float promedio;
             promedio = cursor.getFloat(0);
+
+            //guardarlo en shotInfo
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(TableData.ShotInfo.PUNTEO, promedio);
+            selection = TableData.ShotInfo.ID_SHOT+" = ? ";
+            String[] selection_args2 = {shotId};
+            db.update(TableData.ShotInfo.TABLE_NAME, contentValues,selection,selection_args2);
+
+
             return promedio;
         }
         else{

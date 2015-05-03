@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ public class ListDataAdapter extends ArrayAdapter {
         super(context,resource);
     }
     static class LayoutHandler{
-        TextView TITULO, CONTEXTO, PUNTEO;
+        TextView TITULO, CONTEXTO;
+        RatingBar PUNTEO;
 
     }
     @Override
@@ -49,7 +51,7 @@ public class ListDataAdapter extends ArrayAdapter {
             myLayoutHandler = new LayoutHandler();
             myLayoutHandler.TITULO = (TextView)fila.findViewById(R.id.formato_fila_titulo);
             myLayoutHandler.CONTEXTO = (TextView)fila.findViewById(R.id.formato_fila_contenido);
-            myLayoutHandler.PUNTEO = (TextView)fila.findViewById(R.id.formato_fila_punteo);
+            myLayoutHandler.PUNTEO = (RatingBar)fila.findViewById(R.id.ratingBar2);
             fila.setTag(myLayoutHandler);
         }
         else{
@@ -60,7 +62,7 @@ public class ListDataAdapter extends ArrayAdapter {
         DataProvider myDataProvider = (DataProvider)this.getItem(indice);
         myLayoutHandler.TITULO.setText(myDataProvider.getTitle());
         myLayoutHandler.CONTEXTO.setText(myDataProvider.getContent());
-        myLayoutHandler.PUNTEO.setText(myDataProvider.getRating());
+        myLayoutHandler.PUNTEO.setRating(myDataProvider.getRating());
 
         return fila;
     }
