@@ -6,7 +6,7 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     tools:context="com.example.ivan.saberespoder.LoginActivity"
-    android:background="@drawable/fondo2">
+    android:background="@drawable/fondo3">
 
     <!-- Login progress -->
 

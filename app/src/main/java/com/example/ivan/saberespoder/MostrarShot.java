@@ -111,7 +111,7 @@ public class MostrarShot extends ActionBarActivity {
             ((RatingBar)findViewById(R.id.ratingBar)).setIsIndicator(true);
         }
         else{
-            ((RatingBar)findViewById(R.id.ratingBar)).setClickable(false);
+            ((RatingBar)findViewById(R.id.ratingBar)).setIsIndicator(false);
             ((ImageButton)findViewById(R.id.btn_like_mostrar)).setVisibility(Button.VISIBLE);
             myShotsDB = new ShotsDB(getApplicationContext());
             mySqlDB = myShotsDB.getReadableDatabase();
@@ -136,10 +136,10 @@ public class MostrarShot extends ActionBarActivity {
                 }
                 tituloS.setText(titulosList[posicionShot]);
                 contenidoS.setText(contenidosList[posicionShot],TextView.BufferType.EDITABLE);
-
+                myShotsDB = new ShotsDB(getApplicationContext());
+                mySqlDB = myShotsDB.getReadableDatabase();
                 if(!(usuarioIS == null)){
-                    myShotsDB = new ShotsDB(getApplicationContext());
-                    mySqlDB = myShotsDB.getReadableDatabase();
+
 
                     boolean liked = myShotsDB.esFavorito(mySqlDB, titulosList[posicionShot],contenidosList[posicionShot],usuarioIS.id+"");
                     //------quitar de favoritos------------
@@ -162,10 +162,10 @@ public class MostrarShot extends ActionBarActivity {
                 }
                 tituloS.setText(titulosList[posicionShot]);
                 contenidoS.setText(contenidosList[posicionShot],TextView.BufferType.EDITABLE);
-
+                myShotsDB = new ShotsDB(getApplicationContext());
+                mySqlDB = myShotsDB.getReadableDatabase();
                 if(!(usuarioIS == null)){
-                    myShotsDB = new ShotsDB(getApplicationContext());
-                    mySqlDB = myShotsDB.getReadableDatabase();
+
 
                     boolean liked = myShotsDB.esFavorito(mySqlDB, titulosList[posicionShot],contenidosList[posicionShot],usuarioIS.id+"");
                     //------quitar de favoritos------------
@@ -229,16 +229,21 @@ public class MostrarShot extends ActionBarActivity {
         rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating2, boolean fromUser) {
-                if(bandera == false){
-                    bandera = true;
-                    myShotsDB.controlShotPunteo(usuarioIS.id+"",titulosList[posicionShot],contenidosList[posicionShot],rating2+"",mySqlDB);
+                if(!(usuarioIS==null)){
+                    if(bandera == false){
+                        myShotsDB = new ShotsDB(getApplicationContext());
+                        mySqlDB = myShotsDB.getReadableDatabase();
+                        bandera = true;
+                        myShotsDB.controlShotPunteo(usuarioIS.id+"",titulosList[posicionShot],contenidosList[posicionShot],rating2+"",mySqlDB);
 
-                    rating = (RatingBar)findViewById(R.id.ratingBar);
-                    Log.e("PUNTEO", rating2+"");
-                    float punteoProm = myShotsDB.obtenerShotPunteoPromedio(titulosList[posicionShot],contenidosList[posicionShot],mySqlDB);
-                    rating.setRating(punteoProm);
+                        rating = (RatingBar)findViewById(R.id.ratingBar);
+                        Log.e("PUNTEO", rating2+"");
+                        float punteoProm = myShotsDB.obtenerShotPunteoPromedio(titulosList[posicionShot],contenidosList[posicionShot],mySqlDB);
+                        rating.setRating(punteoProm);
+                    }
+                    bandera = false;
                 }
-                bandera = false;
+
             }
         });
 
