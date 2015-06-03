@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -64,14 +65,15 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/estre.ttf");
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
-
+        mEmailView.setTypeface(type_estre);
         usuarioIS = getIntent().getParcelableExtra("usuario");
 
         mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView.setTypeface(type_estre);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -83,6 +85,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mEmailSignInButton.setTypeface(type_estre);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,13 +105,15 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         bRegistrar.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this,Registro.class);
+                Intent i = new Intent(LoginActivity.this, Registro.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
             }
         });
-
+        bRegistrar.setTypeface(type_estre);
+        TextView tIniciarS = (TextView) findViewById(R.id.textView);
+        tIniciarS.setTypeface(type_estre);
         ImageButton btnProfile = (ImageButton) findViewById(R.id.imageButton11);
         btnProfile.setOnClickListener(new OnClickListener() {
             @Override

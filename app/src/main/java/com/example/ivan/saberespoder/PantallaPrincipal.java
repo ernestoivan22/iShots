@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBarActivity;
@@ -77,6 +78,8 @@ public class PantallaPrincipal extends ActionBarActivity{
         });
 
         Button btn = (Button)findViewById(R.id.btn_buscar);
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/estre.ttf");
+        btn.setTypeface(type_estre);
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
         public void onClick(View arg0){
@@ -92,6 +95,7 @@ public class PantallaPrincipal extends ActionBarActivity{
         });
 
         listView = (ListView)findViewById(R.id.shots_recientes);
+
         myListDataAdapter = new ListDataAdapter(getApplicationContext(),R.layout.fila_lista);
         listView.setAdapter(myListDataAdapter);
         myShotsDB = new ShotsDB(getApplicationContext());
@@ -117,6 +121,7 @@ public class PantallaPrincipal extends ActionBarActivity{
 
         //Detectar taps
         myListView = (ListView)findViewById(R.id.shots_recientes);
+
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,

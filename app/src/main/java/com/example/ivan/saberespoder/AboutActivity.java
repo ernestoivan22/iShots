@@ -1,5 +1,6 @@
 package com.example.ivan.saberespoder;
 
+import android.graphics.Typeface;
 import android.media.Image;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -20,6 +21,9 @@ public class AboutActivity extends ActionBarActivity {
         getSupportActionBar().hide();
         TextView text1 = (TextView) findViewById(R.id.textView4);
         TextView text2 = (TextView) findViewById(R.id.textView8);
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/estre.ttf");
+        text1.setTypeface(type_estre);
+        text2.setTypeface(type_estre);
         ImageView imagen = (ImageView) findViewById(R.id.imageView6);
         usuarioIS = getIntent().getParcelableExtra("usuario");
         int opcion =  getIntent().getIntExtra("opcion",-1);
