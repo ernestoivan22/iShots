@@ -51,7 +51,7 @@ public class Registro extends ActionBarActivity {
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Registro.this,Settings.class);
+                Intent i = new Intent(Registro.this,HelpActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }

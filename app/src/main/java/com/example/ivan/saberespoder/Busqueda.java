@@ -64,7 +64,7 @@ public class Busqueda extends ActionBarActivity {
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Busqueda.this,Settings.class);
+                Intent i = new Intent(Busqueda.this,HelpActivity.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

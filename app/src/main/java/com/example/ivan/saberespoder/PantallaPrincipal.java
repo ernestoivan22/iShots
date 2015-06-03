@@ -59,7 +59,7 @@ public class PantallaPrincipal extends ActionBarActivity{
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(PantallaPrincipal.this,Settings.class);
+                Intent i = new Intent(PantallaPrincipal.this,HelpActivity.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario",usuarioIS);
                 startActivity(i);
@@ -80,6 +80,13 @@ public class PantallaPrincipal extends ActionBarActivity{
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
         public void onClick(View arg0){
+                onSearchRequested();
+            }
+        });
+        ImageView btnLupa = (ImageView) findViewById(R.id.imageView8);
+        btnLupa.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0){
                 onSearchRequested();
             }
         });

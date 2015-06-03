@@ -129,7 +129,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         btnSettings.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this,Settings.class);
+                Intent i = new Intent(LoginActivity.this,HelpActivity.class);
                 if (usuarioIS!=null)
                     i.putExtra("usuario", usuarioIS);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
