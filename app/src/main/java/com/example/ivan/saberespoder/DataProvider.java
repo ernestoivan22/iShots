@@ -4,15 +4,17 @@ package com.example.ivan.saberespoder;
  * Created by Ivan on 28/04/2015.
  */
 public class DataProvider {
-    //holi
+
     private String title;
     private String content;
     private float rating;
+    private String contentExtra;
 
-    public DataProvider(String title, String content, float rating){
+    public DataProvider(String title, String content, float rating, String contentExtra){
         this.title = title;
         this.content = content;
         this.rating = rating;
+        this.contentExtra = contentExtra;
     }
 
     public String getTitle() {
@@ -25,6 +27,10 @@ public class DataProvider {
 
     public String getContent() {
         return content;
+    }
+
+    public String getContentExtra() {
+        return contentExtra;
     }
 
     public void setContent(String content) {

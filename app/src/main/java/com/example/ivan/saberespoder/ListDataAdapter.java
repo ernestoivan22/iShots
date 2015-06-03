@@ -61,7 +61,7 @@ public class ListDataAdapter extends ArrayAdapter {
         }
         DataProvider myDataProvider = (DataProvider)this.getItem(indice);
         myLayoutHandler.TITULO.setText(myDataProvider.getTitle());
-        myLayoutHandler.CONTEXTO.setText(myDataProvider.getContent());
+        myLayoutHandler.CONTEXTO.setText(myDataProvider.getContentExtra());
         myLayoutHandler.PUNTEO.setRating(myDataProvider.getRating());
 
         return fila;

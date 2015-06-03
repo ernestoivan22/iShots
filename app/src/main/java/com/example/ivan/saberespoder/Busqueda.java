@@ -148,18 +148,22 @@ public class Busqueda extends ActionBarActivity {
 
         if(cursor.moveToFirst()){
             do{
-                String titulo, contenido;
+                String titulo, contenido, contenidoExtra;
                 float punteo;
                 titulo = cursor.getString(0);
                 contenido = cursor.getString(1);
                 punteo = cursor.getFloat(2);
-                DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
+                if (contenido.length()<=50)
+                    contenidoExtra = contenido;
+                else
+                    contenidoExtra = contenido.substring(0,50)+"...";
+                DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo,contenidoExtra);
                 myListDataAdapter.add(myDataProvider);
 
             }while(cursor.moveToNext());
         }
         else{
-            Toast.makeText(getBaseContext(), "No hubo coincidencias", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "No hubo coincidencias.", Toast.LENGTH_LONG).show();
         }
         myShotsDB.close();
     }
@@ -176,17 +180,21 @@ public class Busqueda extends ActionBarActivity {
 
         if(cursor.moveToFirst()){
             do{
-                String titulo, contenido;
+                String titulo, contenido, contenidoExtra;
                 float punteo;
                 titulo = cursor.getString(0);
                 contenido = cursor.getString(1);
                 punteo = cursor.getFloat(2);
-                DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
+                if (contenido.length()<=50)
+                    contenidoExtra = contenido;
+                else
+                    contenidoExtra = contenido.substring(0,50)+"...";
+                DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo,contenidoExtra);
                 myListDataAdapter.add(myDataProvider);
             }while(cursor.moveToNext());
         }
         else{
-            Toast.makeText(getBaseContext(), "Aún no ha creado Shots", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Aún no ha creado shots", Toast.LENGTH_LONG).show();
         }
         myShotsDB.close();
     }
@@ -203,18 +211,22 @@ public class Busqueda extends ActionBarActivity {
 
         if(cursor.moveToFirst()){
             do{
-                String titulo, contenido;
+                String titulo, contenido, contenidoExtra;
                 float punteo;
                 titulo = cursor.getString(0);
                 contenido = cursor.getString(1);
                 punteo = cursor.getFloat(2);
-                DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo);
+                if (contenido.length()<=50)
+                    contenidoExtra = contenido;
+                else
+                    contenidoExtra = contenido.substring(0,50)+"...";
+                DataProvider myDataProvider = new DataProvider(titulo,contenido,punteo,contenidoExtra);
                 myListDataAdapter.add(myDataProvider);
 
             }while(cursor.moveToNext());
         }
         else{
-            Toast.makeText(getBaseContext(), "No ha agregado Shots como favoritos", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "No ha agregado shots como favoritos", Toast.LENGTH_LONG).show();
         }
         myShotsDB.close();
     }
