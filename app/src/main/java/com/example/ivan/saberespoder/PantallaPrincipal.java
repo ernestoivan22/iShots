@@ -22,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 
 public class PantallaPrincipal extends ActionBarActivity{
@@ -79,6 +80,8 @@ public class PantallaPrincipal extends ActionBarActivity{
 
         Button btn = (Button)findViewById(R.id.btn_buscar);
         Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/geo_1.ttf");
+        TextView shots = (TextView) findViewById(R.id.textView3);
+        shots.setTypeface(type_estre);
         btn.setTypeface(type_estre);
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
