@@ -113,7 +113,8 @@
                 android:background="#00000000"
                 android:paddingTop="20dp"
                 android:focusableInTouchMode="false"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#ffffffff" />
 
         </LinearLayout>
     </ScrollView>
