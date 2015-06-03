@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
@@ -46,6 +47,9 @@ public class MostrarShot extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_shot);
         getSupportActionBar().hide();
+
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/estre.ttf");
+        Typeface type_tipot = Typeface.createFromAsset(getAssets(),"fonts/Tipotype.ttf");
 
         ImageButton toProfile = (ImageButton) findViewById(R.id.imageButton6);
         ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton7);
@@ -100,8 +104,10 @@ public class MostrarShot extends ActionBarActivity {
         tituloS = (TextView)findViewById(R.id.titulo_Shot_mostrar);
         contenidoS = (EditText)findViewById(R.id.contenido_Shot_mostrar);
 
+        tituloS.setTypeface(type_estre);
         tituloS.setText(titulosList[posicionShot]);
 
+        contenidoS.setTypeface(type_tipot);
         contenidoS.setText(contenidosList[posicionShot],TextView.BufferType.EDITABLE);
         contenidoS.setFocusable(false);
 
