@@ -37,6 +37,9 @@ public class AgregarShot extends ActionBarActivity {
         ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton15);
         ImageView btnLogo = (ImageView) findViewById(R.id.imageView7);
         Button btnCancelar = (Button) findViewById(R.id.button4);
+        Button btnAdd = (Button) findViewById(R.id.btn_agregar_shot);
+        btnAdd.setTypeface(type_estre);
+        btnCancelar.setTypeface(type_estre);
         usuarioIS = getIntent().getParcelableExtra("usuario");
         toProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,3 +133,4 @@ public class AgregarShot extends ActionBarActivity {
         }
     }
 }
+

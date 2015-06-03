@@ -2,6 +2,7 @@ package com.example.ivan.saberespoder;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 
 public class ProfileActivity extends ActionBarActivity {
@@ -28,7 +31,9 @@ public class ProfileActivity extends ActionBarActivity {
         getSupportActionBar().hide();
         ListView listView1 = (ListView) findViewById(R.id.listView);
         String[] opciones  = {"Crear shot","Mis shots","Mis favoritos","Cerrar sesión"};
-
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/geo_1.ttf");
+        TextView txt7 = (TextView) findViewById(R.id.textView7);
+        txt7.setTypeface(type_estre);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, opciones);
         listView1.setAdapter(adapter);

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -35,11 +37,12 @@ public class Busqueda extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
         getSupportActionBar().hide();
-
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/geo_1.ttf");
         ImageButton toProfile = (ImageButton) findViewById(R.id.imageButton2);
         ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton3);
         ImageView btnLogo = (ImageView) findViewById(R.id.imageView2);
-
+        TextView txtResultados = (TextView) findViewById(R.id.textView5);
+        txtResultados.setTypeface(type_estre);
         usuarioIS = getIntent().getParcelableExtra("usuario");
         myShotsDB = new ShotsDB(getApplicationContext());
         mySqlDB = myShotsDB.getReadableDatabase();
@@ -135,6 +138,7 @@ public class Busqueda extends ActionBarActivity {
     private void doMySearch(String query) {
         myListView = (ListView)findViewById(R.id.listResultados);
         myListDataAdapter = new ListDataAdapter(getApplicationContext(),R.layout.fila_lista);
+
         myListView.setAdapter(myListDataAdapter);
 
         myShotsDB = new ShotsDB(getApplicationContext());
