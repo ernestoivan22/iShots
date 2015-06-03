@@ -78,7 +78,7 @@ public class PantallaPrincipal extends ActionBarActivity{
         });
 
         Button btn = (Button)findViewById(R.id.btn_buscar);
-        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/estre.ttf");
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/geo_1.ttf");
         btn.setTypeface(type_estre);
         btn.setOnClickListener(new View.OnClickListener(){
             @Override

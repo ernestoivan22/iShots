@@ -65,7 +65,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/estre.ttf");
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/geo_1.ttf");
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -90,14 +90,14 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             @Override
             public void onClick(View view) {
                 usuarioIS = attemptLogin();
-                if (usuarioIS!=null) {
+                if (usuarioIS != null) {
                     Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
-                    i.putExtra("usuario",usuarioIS);
+                    i.putExtra("usuario", usuarioIS);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                     finish();
-                }else
-                    Toast.makeText(getApplicationContext(),"Correo y/o contraseña incorrectos.",Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getApplicationContext(), "Correo y/o contraseña incorrectos.", Toast.LENGTH_SHORT).show();
             }
         });
 

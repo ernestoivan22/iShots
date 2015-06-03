@@ -23,11 +23,11 @@ public class ShotsDB extends SQLiteOpenHelper {
     private static final String CREATE_QUERRY5 = "CREATE TABLE "+TableData.SesionActiva.TABLE_NAME+" ("+TableData.SesionActiva.id+" INT, "+TableData.SesionActiva.id_user+" INT, "+TableData.SesionActiva.username+" TEXT, "+ TableData.SesionActiva.enSesion+" INT);";
     private static final String CREATE_QUERRY6 = "CREATE TABLE "+TableData.shotsFavoritos.TABLE_NAME+" ("+TableData.shotsFavoritos.ID_SHOT+" INT, "+TableData.shotsFavoritos.ID_USUARIO+" INT);";
     private static final String CREATE_QUERRY7 = "CREATE TABLE "+TableData.shotsPunteos.TABLE_NAME+" ("+TableData.shotsPunteos.ID_SHOT+" INT, "+TableData.shotsPunteos.ID_USUARIO+" INT, "+TableData.shotsPunteos.PUNTEO_SHOT+" INT);";
-    private static final String CREATE_USER = "INSERT INTO "+TableData.UserInfo.TABLE_NAME+" VALUES (1, \'admin\', \'admin@admin.com\', \'pass\')";
-    private static final String CREATE_SHOTS = "INSERT INTO "+TableData.ShotInfo.TABLE_NAME+" VALUES (\'Islas de Perros\', \'Las Islas Canarias le deben su nombre a los canes y no a los canarios.\', 0, 1,  1)";
-    private static final String CREATE_SHOTS2 = "INSERT INTO "+TableData.ShotInfo.TABLE_NAME+" VALUES (\'Cosas del Diablo\', \'El opuesto de sÃ­mbolo es Diavolo.\', 0, 1,  2)";
-    private static final String CREATE_SHOTS3 = "INSERT INTO "+TableData.ShotInfo.TABLE_NAME+" VALUES (\'La Aventura Musical de Jojo\', \'Casi la totalidad de personajes de La aventura bizarra de Jojo poseen nombres de bandas, artistas y canciones.\', 0, 1,  3)";
-    private static final String CREATE_SHOTS4 = "INSERT INTO "+TableData.ShotInfo.TABLE_NAME+" VALUES (\'May the 4th be with you\', \'El 4 de mayo es el dÃ­a de las guerras de las galaxias.\', 0, 1,  4)";
+    //private static final String CREATE_USER = "INSERT INTO "+TableData.UserInfo.TABLE_NAME+" VALUES (1, \'admin\', \'admin@admin.com\', \'pass\')";
+    private static final String CREATE_SHOTS = "INSERT INTO "+TableData.ShotInfo.TABLE_NAME+" VALUES (\'Islas de perros\', \'Las Islas Canarias le deben su nombre a los canes y no a los canarios.\', 0, -1,  1)";
+    private static final String CREATE_SHOTS2 = "INSERT INTO "+TableData.ShotInfo.TABLE_NAME+" VALUES (\'Cosas del diablo\', \'El opuesto de símbolo es diávolo.\', 0, -1,  2)";
+    private static final String CREATE_SHOTS3 = "INSERT INTO "+TableData.ShotInfo.TABLE_NAME+" VALUES (\'La Aventura Musical de Jojo\', \'Casi la totalidad de personajes de la aventura bizarra de Jojo poseen nombres de bandas, artistas y canciones.\', 0, -1,  3)";
+    private static final String CREATE_SHOTS4 = "INSERT INTO "+TableData.ShotInfo.TABLE_NAME+" VALUES (\'May the 4th be with you\', \'El 4 de mayo es el día de las guerras de las galaxias.\', 0, -1,  4)";
     public ShotsDB(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
             Log.e("DATABASE OPERATIONS", "Database created / opened...");
@@ -41,7 +41,6 @@ public class ShotsDB extends SQLiteOpenHelper {
         db.execSQL(CREATE_QUERRY5);
         db.execSQL(CREATE_QUERRY6);
         db.execSQL(CREATE_QUERRY7);
-        db.execSQL(CREATE_USER);
         db.execSQL(CREATE_SHOTS);
         db.execSQL(CREATE_SHOTS2);
         db.execSQL(CREATE_SHOTS3);

@@ -34,7 +34,7 @@ public class Registro extends ActionBarActivity {
         editText = (EditText)this.findViewById(R.id.editText);
         editText2 = (EditText)this.findViewById(R.id.editText2);
         editText3 = (EditText)this.findViewById(R.id.editText3);
-        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/estre.ttf");
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/geo_1.ttf");
         tituloR.setTypeface(type_estre);
         editText.setTypeface(type_estre);
         editText2.setTypeface(type_estre);

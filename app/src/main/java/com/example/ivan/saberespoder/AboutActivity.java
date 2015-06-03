@@ -21,7 +21,7 @@ public class AboutActivity extends ActionBarActivity {
         getSupportActionBar().hide();
         TextView text1 = (TextView) findViewById(R.id.textView4);
         TextView text2 = (TextView) findViewById(R.id.textView8);
-        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/estre.ttf");
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/geo_1.ttf");
         text1.setTypeface(type_estre);
         text2.setTypeface(type_estre);
         ImageView imagen = (ImageView) findViewById(R.id.imageView6);

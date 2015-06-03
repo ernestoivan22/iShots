@@ -48,7 +48,7 @@ public class MostrarShot extends ActionBarActivity {
         setContentView(R.layout.activity_mostrar_shot);
         getSupportActionBar().hide();
 
-        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/estre.ttf");
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/geo_1.ttf");
         Typeface type_tipot = Typeface.createFromAsset(getAssets(),"fonts/Tipotype.ttf");
 
         ImageButton toProfile = (ImageButton) findViewById(R.id.imageButton6);

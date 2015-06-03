@@ -3,6 +3,7 @@ package com.example.ivan.saberespoder;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,7 +30,9 @@ public class AgregarShot extends ActionBarActivity {
         setContentView(R.layout.activity_agregar_shot);
         ShotTitle = (EditText)findViewById(R.id.shot_titulo);
         ShotContent = (EditText)findViewById(R.id.shot_contenido);
-
+        Typeface type_estre = Typeface.createFromAsset(getAssets(),"fonts/geo_1.ttf");
+        ShotTitle.setTypeface(type_estre);
+        ShotContent.setTypeface(type_estre);
         ImageButton toProfile = (ImageButton) findViewById(R.id.imageButton);
         ImageButton btnSettings = (ImageButton) findViewById(R.id.imageButton15);
         ImageView btnLogo = (ImageView) findViewById(R.id.imageView7);
