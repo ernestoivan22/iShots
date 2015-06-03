@@ -5,7 +5,7 @@
     android:paddingTop="0dp"
     android:orientation="vertical"
     android:paddingBottom="0dp" tools:context=".MostrarShot"
-    android:background="@drawable/fondo3">
+    android:background="@drawable/my_background">
 
     <LinearLayout
         android:orientation="horizontal"

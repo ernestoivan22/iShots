@@ -6,7 +6,7 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     tools:context="com.example.ivan.saberespoder.LoginActivity"
-    android:background="@drawable/fondo2">
+    android:background="@drawable/my_background">
 
     <ListView
         android:layout_width="match_parent"
